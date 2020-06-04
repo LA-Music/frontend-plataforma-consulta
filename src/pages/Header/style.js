@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
+
 export const Header = styled.header`
   background-image: url(${props => props.background});
   background-repeat: no-repeat;
+  background-position: right;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -10,4 +12,13 @@ export const Header = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  h1{
+    font-family: 'AvenirBold';
+  }
+
+  p{
+    font-family: 'AvenirRegular-500';
+    margin: auto;
+  }
 `;

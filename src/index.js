@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
+import './assets/fonts/AvenirNextLTPro-Bold.otf'
+import './assets/fonts/AvenirNextLTPro-Demi.otf'
+import './assets/fonts/AvenirNextLTPro-Regular.otf'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

@@ -3,50 +3,98 @@ import './App.css';
 import Header from './pages/Header'
 import { ArrowRightAlt } from '@material-ui/icons'
 import { Step, Step2, Step3 } from './pages/Form'
+import { Provider } from 'react-redux';
+import store from './store';
 import Footer from './pages/Footer'
-import Button from './components/Button'
+import Button, { Link } from './components/Button'
+import axios from 'axios'
+
 
 function App() {
+  
   const [ step, setStep ] = useState(0)
-  const [ button, setButton ] = useState([{context: 'Próximo', color: '#0FBB00'},{context:'Finalizar', color: '#0FBB00'}, {context: 'Ir para site LA Music', color: '#3F3F3F'}])
+  const [ button ] = useState([{context: 'Próximo', color: '#0FBB00'},{context:'Finalizar', color: '#0FBB00'}, {context: 'Ir para site LA Music', color: '#3F3F3F'}])
+  const [ disabled, setDisabled ] = useState(false);
+  const { data } = store.getState()
+  const [ form, setForm ] = useState(data)
+
+  function submit(){
+    const { data } = store.getState()
+    setDisabled(true)
+    try {
+      axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
+        nome: data.nome,
+        email: data.email,
+        cpf: data.cpf,
+        associacao: data.associacao,
+        nome_artistico: data.nome_artistico,
+        redes_sociais: data.redes_sociais,
+        telefone: data.telefone,
+        lista_musicas: data.lista_musicas
+      })
+      .then( res => {
+          res.data.message === 'ok' && setStep(step + 1);
+          setDisabled(false);
+        }
+      )} catch (error) {
+        console.error(error)
+        setDisabled(false);
+    }
+  }
+
 
   return (
+  <Provider store={store}>
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
-        <body className="my-5 d-flex jutify-content-center mx-auto" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
-          <div style={{width: '30vw'}}></div>
-          <div style={{width: '40vw'}}>
-          {step === 0 && (
-            <div id="step-1" className="step-1" active={step === 1}>
-              <h2 className="text-white">Dados Pessoais</h2>
-              <Step />
-            </div>
-          )}
-          {step === 1 && (
-            <div id="step-2" className="step-2" active={step === 2}>
-              <Step2 />
-            </div>
-          )}
-          {step === 2 && (
-            <div id="step-3" className="step-3" active={step === 3}>
-              <Step3 />
-            </div>
-          )}
-          <Button 
-            color={button[step].color}
-            className="w-100"
-            onClick={e => step < 2 ? setStep(step + 1) : setStep(0)} 
-            text={button[step].context}
-            endIcon={step === 0 && <ArrowRightAlt />} />
+          <body className="my-5 d-flex jutify-content-center mx-auto flex-column flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
+          <div className="order-3 order-sm-1" style={{width: '30vw'}}></div>
+          <div className="order-2 order-sm-2" style={{width: '40vw'}}>
+              {step === 0 && (
+                <div id="step-1" className="step-1" active={step === 1}>
+                  <h2 className="text-white">Dados Pessoais</h2>
+                  <Step callStep={ e => setForm(e)} />
+                  <Button 
+                    disabled={form.requiredStep1}
+                    color={button[step].color}
+                    className="w-100"
+                    onClick={e => step < 2 ? setStep(step + 1) : setStep(0)} 
+                    text={button[step].context}
+                    endIcon={step === 0 && <ArrowRightAlt />} />
+                </div>
+              )}
+              {step === 1 && (
+                <div id="step-2" className="step-2" active={step === 2}>
+                  <Step2 />
+                  <Button 
+                    disabled={disabled}
+                    color={button[step].color}
+                    className="w-100"
+                    onClick={e => submit()} 
+                    text={button[step].context}
+                    endIcon={step === 0 && <ArrowRightAlt />} />
+                </div>
+              )}
+              {step === 2 && (
+                <div id="step-3" className="step-3 text-center" active={step === 3}>
+                  <Step3 />
+                  <Link 
+                    href='https://lamusic.com.br/'
+                    color={button[step].color}
+                    text={button[step].context}
+                    className="w-100"/>
+                </div>
+              )}
           </div>
-          <div style={{width: '30vw'}} className="d-flex ml-5 flex-column justify-content-center">
+          <div style={{width: '30vw'}} className="d-flex ml-5 flex-row flex-sm-column justify-content-center order-1 order-sm-3">
             <span className={`num-Steps ${step === 0 && 'active'}`}>1</span>
             <span className={`num-Steps ${step === 1 && 'active'}`}>2</span>
             <span className={`num-Steps ${step === 2 && 'active'}`}>3</span>
           </div>
         </body>
-      <Footer />
+      <Footer /> 
     </div>
+   </Provider>
   );
 }
 
