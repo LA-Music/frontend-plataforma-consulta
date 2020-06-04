@@ -49,3 +49,15 @@ export const TextStep3 = styled.h2`
   line-height: 31px;
   font-family: 'AvenirRegular';
 `;
+
+export const TagLabel = styled.span`
+  width: 169px;
+  height: 30px;
+  color: #A5A5A5;
+  background: #2C2C2C;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

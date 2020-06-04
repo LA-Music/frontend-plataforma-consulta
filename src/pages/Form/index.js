@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, InputGroup } from 'react-bootstrap'
-import { Radio, RadioGroup } from '@material-ui/core'
-import { Input, RadioInput, Label, TextStep3 } from './style';
+import { Radio, RadioGroup, FormControl, FilledInput, InputAdornment, IconButton } from '@material-ui/core'
+import { Input, RadioInput, Label, TextStep3, TagLabel } from './style'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import { useSelector, useDispatch } from 'react-redux'
+import { AddCircle } from '@material-ui/icons'
 
 export function Step (props) {
   const form = useSelector(state => state.data);
@@ -40,6 +41,8 @@ export function Step (props) {
 }
 
 export function Step2 () {
+  const [ sociais, setSociais ] = useState()
+  const [ musicas, setMusicas ] = useState()
   const form = useSelector(state => state.data);
   const dispatch = useDispatch();
 
@@ -57,17 +60,63 @@ export function Step2 () {
           <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" />
         </RadioGroup>
       </Form.Group>
-      <Form.Group>
-        <Form.Label className="text-white">Redes sociais</Form.Label>
+      {/* <Form.Group>
         <InputGroup>
           <Input type="text" value={form.redes_sociais} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [e.target.value]}})} placeholder="@exemplo123_" />
         </InputGroup>
-      </Form.Group>
-      <Form.Group>
+      </Form.Group> */}
+      <FormControl className="w-100 mb-3" variant="filled">
+        <Form.Label className="text-white">Redes sociais</Form.Label>
+          <FilledInput
+            value={sociais}
+            onChange={ async e => setSociais(e.target.value)}
+            style={{height: '59px', border: '1px solid #949494',borderRadius: '4px', color: '#A5A5A5'}}
+            placeholder="@exemplo123_"
+            id="filled-adornment-password"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  edge="end"
+                >
+                  <AddCircle onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) } />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <div className="w-100 d-flex">
+          {form.redes_sociais.map( r => (<TagLabel className="my-3 mr-3">{r}</TagLabel>))}
+          </div>
+        </FormControl>
+      <FormControl className="w-100 mb-3" variant="filled">
+          <Form.Label className="text-white">Lista de Músicas</Form.Label>
+          <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
+          <FilledInput
+            value={musicas}
+            onChange={ async e => setMusicas(e.target.value)}
+            style={{height: '59px', border: '1px solid #949494',borderRadius: '4px', color: '#A5A5A5'}}
+            placeholder="Nome da música"
+            id="filled-adornment-password"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  edge="end"
+                >
+                  <AddCircle onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) } />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <div className="w-100 d-flex">
+          {form.lista_musicas.map( r => (<TagLabel className="my-3 mr-3">{r}</TagLabel>))}
+          </div>
+        </FormControl>
+      {/* <Form.Group>
         <Form.Label className="text-white">Lista de Músicas</Form.Label>
         <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
         <Input type="text" value={form.lista_musicas} onChange={e => dispatch({type: 'ADD_FORM', payload:{...form, lista_musicas: [e.target.value]}})} placeholder="Nome da música" />
-      </Form.Group>
+      </Form.Group> */}
     </Form>
   );
 }
