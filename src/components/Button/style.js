@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 
 export const NextSteps = styled(Button)`
-${props => console.log(props)}
-  background-color: ${props => props.disabled ? '#666766' : props.color} !important;
+  background-color: ${props => props.disabled ? '#666766' : props.colorbutton} !important;
   text-transform: capitalize !important;
   border: none !important;
   box-shadow: none !important;
@@ -23,7 +22,7 @@ ${props => console.log(props)}
 `;
 
 export const LinkButtom = styled.a`
-  background-color: ${props => props.color} !important;
+  background-color: ${props => props.colorbutton} !important;
   text-transform: capitalize !important;
   border: none !important;
   color: #ffffff;

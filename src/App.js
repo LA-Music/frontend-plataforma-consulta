@@ -47,16 +47,16 @@ function App() {
   <Provider store={store}>
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
-          <body className="my-5 d-flex jutify-content-center mx-auto flex-column flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
+          <div className="my-5 d-flex jutify-content-center mx-auto flex-column flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
           <div className="order-3 order-sm-1" style={{width: '30vw'}}></div>
           <div className="order-2 order-sm-2" style={{width: '40vw'}}>
               {step === 0 && (
-                <div id="step-1" className="step-1" active={step === 1}>
+                <div id="step-1" className="step-1" active={step === 1 ? true : undefined}>
                   <h2 className="text-white">Dados Pessoais</h2>
                   <Step callStep={ e => setForm(e)} />
                   <Button 
                     disabled={form.requiredStep1}
-                    color={button[step].color}
+                    colorbutton={button[step].color}
                     className="w-100"
                     onClick={e => step < 2 ? setStep(step + 1) : setStep(0)} 
                     text={button[step].context}
@@ -64,11 +64,11 @@ function App() {
                 </div>
               )}
               {step === 1 && (
-                <div id="step-2" className="step-2" active={step === 2}>
+                <div id="step-2" className="step-2" active={step === 2 ? true : undefined}>
                   <Step2 />
                   <Button 
                     disabled={disabled}
-                    color={button[step].color}
+                    colorbutton={button[step].color}
                     className="w-100"
                     onClick={e => submit()} 
                     text={button[step].context}
@@ -76,22 +76,22 @@ function App() {
                 </div>
               )}
               {step === 2 && (
-                <div id="step-3" className="step-3 text-center" active={step === 3}>
+                <div id="step-3" className="step-3 text-center" active={step === 3 ? true : undefined}>
                   <Step3 />
                   <Link 
                     href='https://lamusic.com.br/'
-                    color={button[step].color}
+                    colorbutton={button[step].color}
                     text={button[step].context}
                     className="w-100"/>
                 </div>
               )}
           </div>
           <div style={{width: '30vw'}} className="d-flex ml-5 flex-row flex-sm-column justify-content-center order-1 order-sm-3">
-            <span className={`num-Steps ${step === 0 && 'active'}`}>1</span>
-            <span className={`num-Steps ${step === 1 && 'active'}`}>2</span>
-            <span className={`num-Steps ${step === 2 && 'active'}`}>3</span>
+            <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
+            <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
+            <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
           </div>
-        </body>
+        </div>
       <Footer /> 
     </div>
    </Provider>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Form, InputGroup } from 'react-bootstrap'
-import { Radio, RadioGroup, FormControl, FilledInput, InputAdornment, IconButton } from '@material-ui/core'
-import { Input, RadioInput, Label, TextStep3, TagLabel } from './style'
+import { Form } from 'react-bootstrap'
+import { Radio, RadioGroup, FormControl, InputAdornment, IconButton } from '@material-ui/core'
+import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag } from './style'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import { useSelector, useDispatch } from 'react-redux'
 import { AddCircle } from '@material-ui/icons'
@@ -13,6 +13,8 @@ export function Step (props) {
   useEffect(() => {
     props.callStep(form)
   }, [form, props])
+
+  
   
   return (
     <Form>
@@ -46,6 +48,18 @@ export function Step2 () {
   const form = useSelector(state => state.data);
   const dispatch = useDispatch();
 
+  function removeMusic(e){
+    let index = form.lista_musicas.indexOf(`${e}`);
+        index !== -1 && form.lista_musicas.splice(index,1);
+        dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: form.lista_musicas}})
+  }
+  
+  function removeSociais(e){
+    let index = form.redes_sociais.indexOf(`${e}`);
+        index !== -1 && form.redes_sociais.splice(index,1);
+        dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: form.redes_sociais}})
+  }
+
   return (
     <Form>
       <Form.Group>
@@ -60,41 +74,35 @@ export function Step2 () {
           <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" />
         </RadioGroup>
       </Form.Group>
-      {/* <Form.Group>
-        <InputGroup>
-          <Input type="text" value={form.redes_sociais} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [e.target.value]}})} placeholder="@exemplo123_" />
-        </InputGroup>
-      </Form.Group> */}
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Redes sociais</Form.Label>
-          <FilledInput
+          <InputButtom
             value={sociais}
-            onChange={ async e => setSociais(e.target.value)}
-            style={{height: '59px', border: '1px solid #949494',borderRadius: '4px', color: '#A5A5A5'}}
+            onChange={e => setSociais(e.target.value)}
             placeholder="@exemplo123_"
             id="filled-adornment-password"
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment position="end" >
                 <IconButton
                   aria-label="toggle password visibility"
                   edge="end"
+                  onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) } 
                 >
-                  <AddCircle onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) } />
+                  <AddCircle />
                 </IconButton>
               </InputAdornment>
             }
           />
           <div className="w-100 d-flex">
-          {form.redes_sociais.map( r => (<TagLabel className="my-3 mr-3">{r}</TagLabel>))}
+            {form.redes_sociais.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r}<CloseTag onClick={e => removeSociais(r)} title="Remover">x</CloseTag></TagLabel>))}
           </div>
         </FormControl>
       <FormControl className="w-100 mb-3" variant="filled">
           <Form.Label className="text-white">Lista de Músicas</Form.Label>
           <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
-          <FilledInput
+          <InputButtom
             value={musicas}
             onChange={ async e => setMusicas(e.target.value)}
-            style={{height: '59px', border: '1px solid #949494',borderRadius: '4px', color: '#A5A5A5'}}
             placeholder="Nome da música"
             id="filled-adornment-password"
             endAdornment={
@@ -102,21 +110,17 @@ export function Step2 () {
                 <IconButton
                   aria-label="toggle password visibility"
                   edge="end"
+                  onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) }
                 >
-                  <AddCircle onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) } />
+                  <AddCircle />
                 </IconButton>
               </InputAdornment>
             }
           />
           <div className="w-100 d-flex">
-          {form.lista_musicas.map( r => (<TagLabel className="my-3 mr-3">{r}</TagLabel>))}
+            {form.lista_musicas.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r} <CloseTag onClick={e => removeMusic(r)} title="Remover">x</CloseTag></TagLabel>))}
           </div>
         </FormControl>
-      {/* <Form.Group>
-        <Form.Label className="text-white">Lista de Músicas</Form.Label>
-        <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
-        <Input type="text" value={form.lista_musicas} onChange={e => dispatch({type: 'ADD_FORM', payload:{...form, lista_musicas: [e.target.value]}})} placeholder="Nome da música" />
-      </Form.Group> */}
     </Form>
   );
 }

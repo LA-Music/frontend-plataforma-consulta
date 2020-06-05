@@ -3,11 +3,11 @@ import { NextSteps, LinkButtom } from './style'
 
 
 function index(props) {
-  return <NextSteps color={props.color} variant="contained" {...props}>{props.text}</NextSteps>
+  return <NextSteps variant="contained" {...props}>{props.text}</NextSteps>
 }
 
 export function Link (props){
-  return <LinkButtom color={props.color} variant="contained" {...props}>{props.text}</LinkButtom>
+  return <LinkButtom variant="contained" {...props}>{props.text}</LinkButtom>
 }
 
 export default index

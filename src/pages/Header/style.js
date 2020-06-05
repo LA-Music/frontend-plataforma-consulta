@@ -12,7 +12,7 @@ export const Header = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-
+  text-align: center;
   h1{
     font-family: 'AvenirBold';
   }

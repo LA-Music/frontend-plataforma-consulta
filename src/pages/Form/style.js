@@ -1,22 +1,10 @@
 import styled from 'styled-components';
 import { Form } from 'react-bootstrap'
-import { FormControlLabel, FormControl } from '@material-ui/core'
+import { FormControlLabel, FilledInput } from '@material-ui/core'
 
 export const Label = styled(Form.Label)`
   font-family: 'AvenirRegular-600';
 `;
-
-export const InputButton = styled(FormControl)`
-  width: 100%;
-  background-color: #2C2C2C !important;
-  border: 1px solid #949494 !important;
-  box-sizing: border-box;
-  border-radius: 4px;
-  height: 59px;
-  box-shadow: none;
-  &:active{
-    border-color: 1px solid #949494 !important;
-  }`;
 
 export const Input = styled(Form.Control)`
   background-color: #2C2C2C !important;
@@ -29,18 +17,11 @@ export const Input = styled(Form.Control)`
     border-color: 1px solid #949494 !important;
   }`;
 
-export const CheckboxInput = styled(FormControlLabel)`
-  width: 100%;
-  color: #A5A5A5;
-  .MuiCheckbox-root{
-    color: #949494 !important;
-  }
-`;
 export const RadioInput = styled(FormControlLabel)`
   width: 100%;
   color: #A5A5A5;
   .MuiButtonBase-root{
-    color: #949494 !important;
+    color: #A5A5A5 !important;
   }
 `;
 
@@ -51,13 +32,32 @@ export const TextStep3 = styled.h2`
 `;
 
 export const TagLabel = styled.span`
-  width: 169px;
   height: 30px;
   color: #A5A5A5;
   background: #2C2C2C;
   border-radius: 16px;
   padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding-left: 2rem;
+`;
+
+export const InputButtom = styled(FilledInput)`
+  background-color: #2C2C2C !important;
+  height: 59px;
+  border: 1px solid #949494;
+  border-radius: 4px;
+  input{
+    height: 100%;
+    font-family: 'AvenirRegular';
+    color: #A5A5A5;
+    padding: 0rem 1rem;
+  }
+`;
+
+export const CloseTag = styled.span`
+  cursor: pointer;
+  color: #ffffff;
+  margin-left: 1rem;
 `;
