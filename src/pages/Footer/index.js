@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@material-ui/core'
 import { Footer } from './style';
 import Logo from '../../assets/img/logo.svg'
 import Linkedin from '../../assets/img/linkedin.svg'
@@ -16,10 +17,18 @@ function index(props) {
         <p className="mb-0">Todos os direitos reservados</p>
       </div>
       <div className="d-flex align-item-center justify-content-center">
-        <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
-        <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
-        <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
-        <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
+        <Link href="#"> 
+          <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
+        </Link>
+        <Link href="#">
+          <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
+        </Link>
+        <Link href="#">
+          <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
+        </Link>
+        <Link href="#">
+          <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
+        </Link>
       </div>
     </Footer>
     <Footer className="d-flex d-sm-none flex-row justify-content-center align-items-center row w-100 mx-auto">
@@ -28,10 +37,18 @@ function index(props) {
         <p className="mb-0">Todos os direitos reservados</p>
       </div>
       <div className="d-flex align-item-center justify-content-center col-12 my-5">
-        <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
-        <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
-        <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
-        <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
+        <Link href="#">
+          <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
+        </Link>
+        <Link href="#">
+          <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
+        </Link>
+        <Link href="#">
+          <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
+        </Link>
+        <Link href="#">
+          <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
+        </Link>
       </div>
     </Footer>
     </>
