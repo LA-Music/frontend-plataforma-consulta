@@ -11,6 +11,7 @@ export const Input = styled(Form.Control)`
   border: 1px solid #949494 !important;
   box-sizing: border-box;
   border-radius: 4px;
+  color: #A5A5A5 !important;
   height: 59px;
   box-shadow: none;
   &:active{
