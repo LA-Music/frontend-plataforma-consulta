@@ -93,7 +93,7 @@ export function Step2 () {
               </InputAdornment>
             }
           />
-          <div className="w-100 d-flex">
+          <div className="w-100 d-flex row mx-auto">
             {form.redes_sociais.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r}<CloseTag onClick={e => removeSociais(r)} title="Remover">x</CloseTag></TagLabel>))}
           </div>
         </FormControl>
@@ -117,7 +117,7 @@ export function Step2 () {
               </InputAdornment>
             }
           />
-          <div className="w-100 d-flex">
+          <div className="w-100 d-flex row mx-auto">
             {form.lista_musicas.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r} <CloseTag onClick={e => removeMusic(r)} title="Remover">x</CloseTag></TagLabel>))}
           </div>
         </FormControl>

@@ -47,9 +47,9 @@ function App() {
   <Provider store={store}>
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
-          <div className="my-5 d-flex jutify-content-center mx-auto flex-column flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
+        <div className="my-5 d-flex jutify-content-center mx-auto flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
           <div className="order-3 order-sm-1" style={{width: '30vw'}}></div>
-          <div className="order-2 order-sm-2" style={{width: '40vw'}}>
+          <div className="sessao-meio order-2 order-sm-2">
               {step === 0 && (
                 <div id="step-1" className="step-1" active={step === 1 ? true : undefined}>
                   <h2 className="text-white">Dados Pessoais</h2>
@@ -86,7 +86,7 @@ function App() {
                 </div>
               )}
           </div>
-          <div style={{width: '30vw'}} className="d-flex ml-5 flex-row flex-sm-column justify-content-center order-1 order-sm-3">
+          <div className="sessaoNum d-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center order-1 order-sm-3">
             <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
             <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
             <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>

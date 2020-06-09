@@ -13,6 +13,14 @@ export const Header = styled.header`
   font-size: calc(10px + 2vmin);
   color: white;
   text-align: center;
+  div{
+    width: 70vw;
+  }
+  @media (min-width: 360px){
+    div{
+      width: 90vw;
+    }
+  }
   h1{
     font-family: 'AvenirBold';
   }
