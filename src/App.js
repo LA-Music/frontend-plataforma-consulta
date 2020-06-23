@@ -33,7 +33,7 @@ function App() {
         lista_musicas: data.lista_musicas
       })
       .then( res => {
-          res.data.message === 'ok' && setStep(step + 1);
+          res.data.msg === 'ok' && setStep(step + 1);
           setDisabled(false);
         }
       )} catch (error) {
