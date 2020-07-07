@@ -8,7 +8,10 @@ import store from './store';
 import Footer from './pages/Footer'
 import Button, { Link } from './components/Button'
 import axios from 'axios'
+import ReactGA from 'react-ga'
 
+ReactGA.initialize('UA-143795586-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   
@@ -17,6 +20,8 @@ function App() {
   const [ disabled, setDisabled ] = useState(false);
   const { data } = store.getState()
   const [ form, setForm ] = useState(data)
+
+
 
   function submit(){
     const { data } = store.getState()
