@@ -17,16 +17,16 @@ function index(props) {
         <p className="mb-0">Todos os direitos reservados</p>
       </div>
       <div className="d-flex align-item-center justify-content-center">
-        <Link href="#"> 
+        <Link href="https://www.linkedin.com/company/lamusic/" target="_blank"> 
           <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
         </Link>
-        <Link href="#">
+        <Link href="https://www.facebook.com/LAMusicMM" target="_blank">
           <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
         </Link>
-        <Link href="#">
+        <Link href="https://www.instagram.com/lamusicmm/" target="_blank">
           <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
         </Link>
-        <Link href="#">
+        <Link href="https://api.whatsapp.com/send?phone=5541998987030&fbclid=IwAR2ouD7MCdPlnh7fRCScOEQe1fWdxVmZW_TXVTqsEkFR7HS7WskFHgaF42Q" target="_blank">
           <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
         </Link>
       </div>
@@ -37,16 +37,16 @@ function index(props) {
         <p className="mb-0">Todos os direitos reservados</p>
       </div>
       <div className="d-flex align-item-center justify-content-center col-12 my-5">
-        <Link href="#">
+        <Link href="https://www.linkedin.com/company/lamusic/" target="_blank">
           <img src={Linkedin} className="img-fluid mx-3" alt="Linkedin"/>
         </Link>
-        <Link href="#">
+        <Link href="https://www.facebook.com/LAMusicMM" target="_blank">
           <img src={Facebook} className="img-fluid mx-3" alt="Facebook"/>
         </Link>
-        <Link href="#">
+        <Link href="https://www.instagram.com/lamusicmm/" target="_blank">
           <img src={Instagram} className="img-fluid mx-3" alt="Instagram"/>
         </Link>
-        <Link href="#">
+        <Link href="https://api.whatsapp.com/send?phone=5541998987030&fbclid=IwAR2ouD7MCdPlnh7fRCScOEQe1fWdxVmZW_TXVTqsEkFR7HS7WskFHgaF42Q" target="_blank">
           <img src={WhatsApp} className="img-fluid mx-3" alt="WhatsApp"/>
         </Link>
       </div>

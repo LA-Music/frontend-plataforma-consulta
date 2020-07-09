@@ -73,6 +73,7 @@ export function Step2 () {
           <RadioInput value="UBC" control={<Radio color="default"/>} label="UBC" />
           <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" />
         </RadioGroup>
+        <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" />
       </Form.Group>
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Redes sociais</Form.Label>

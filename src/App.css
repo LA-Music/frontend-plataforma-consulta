@@ -64,7 +64,34 @@
 .sessaoNum{
   width: 30vw;
 }
-@media (max-width: 360px) { 
+
+.modal-content{
+  background-color: #dc4848 !important;
+}
+.modal-content .modal-header{
+  border-bottom: none;
+}
+.modal-content .modal-title{
+  color: #ffffff;
+  border-bottom: none;
+}
+.modal-content .modal-body{
+  border-top: none;
+  color: #ffffff;
+  text-align: center;
+}
+.modal-content .modal-footer{
+  border-top: none;
+  color: #ffffff;
+}
+.modal-content .modal-footer .buttonModal{
+  color: #ffffff;
+  background-color: transparent !important;
+  border: 1px solid #fff;
+  width: 120px;
+}
+
+@media (max-width: 768px) { 
   .sessao-meio{
     width: 90vw;
   }

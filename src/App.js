@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './pages/Header'
+import { CircularProgress } from '@material-ui/core'
 import { ArrowRightAlt } from '@material-ui/icons'
 import { Step, Step2, Step3 } from './pages/Form'
 import { Provider } from 'react-redux';
+import { Modal } from 'react-bootstrap';
 import store from './store';
 import Footer from './pages/Footer'
 import Button, { Link } from './components/Button'
@@ -20,10 +22,14 @@ function App() {
   const [ disabled, setDisabled ] = useState(false);
   const { data } = store.getState()
   const [ form, setForm ] = useState(data)
-
-
-
-  function submit(){
+  const [ show, setShow ] = useState()
+  const [ resp, setResp ] = useState('')
+  const handleClose = () => {
+    
+    setShow(false)
+  };
+  
+  async function submit(){
     const { data } = store.getState()
     setDisabled(true)
     try {
@@ -38,11 +44,20 @@ function App() {
         lista_musicas: data.lista_musicas
       })
       .then( res => {
+        console.log(res)
           res.data.msg === 'ok' && setStep(step + 1);
           setDisabled(false);
         }
-      )} catch (error) {
-        console.error(error)
+      )
+      .catch(function(err){
+        if(err.response.status === 500){
+          setResp(err.response.data.message)
+          setShow(true)
+          setDisabled(false);
+        }
+      })
+    } catch(error) {
+        console.error(error.response)
         setDisabled(false);
     }
   }
@@ -96,7 +111,20 @@ function App() {
             <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
             <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
           </div>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Body>{resp}</Modal.Body>
+              <Modal.Footer className="d-flex justify-content-center">
+                <button className="buttonModal" onClick={handleClose}>
+                  Fechar
+                </button>
+              </Modal.Footer>
+            </Modal>
         </div>
+        {disabled && (
+          <div className="d-block" style={{position: 'fixed', height: '100%', width: '100%', top: 0, padding: '50vh 0 0 50vw', backgroundColor: '#0c0c0ca8'}}>
+            <CircularProgress disableShrink/>
+          </div>
+        )}
       <Footer /> 
     </div>
    </Provider>
