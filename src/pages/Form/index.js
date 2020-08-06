@@ -4,7 +4,8 @@ import { Radio, RadioGroup, FormControl, InputAdornment, IconButton } from '@mat
 import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag } from './style'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import { useSelector, useDispatch } from 'react-redux'
-import { AddCircle } from '@material-ui/icons'
+// import { AddCircle } from '@material-ui/icons'
+import AddCircle from '../../assets/img/addCircle.svg'
 
 export function Step (props) {
   const form = useSelector(state => state.data);
@@ -13,8 +14,6 @@ export function Step (props) {
   useEffect(() => {
     props.callStep(form)
   }, [form, props])
-
-  
   
   return (
     <Form>
@@ -31,10 +30,6 @@ export function Step (props) {
         <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Fernando Santos da Cruz" />
       </Form.Group>
       <Form.Group>
-        <Form.Label className="text-white">CPF:</Form.Label>
-        <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
-      </Form.Group>
-      <Form.Group>
         <Form.Label className="text-white">Número de telefone:</Form.Label>
         <Input type="text" value={form.telefone} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, telefone: phoneMask(e.target.value)}})} placeholder="(00) 0 0000-0000" />
       </Form.Group>
@@ -45,6 +40,7 @@ export function Step (props) {
 export function Step2 () {
   const [ sociais, setSociais ] = useState()
   const [ musicas, setMusicas ] = useState()
+  const [ associacao ] = useState(['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado'])
   const form = useSelector(state => state.data);
   const dispatch = useDispatch();
 
@@ -63,15 +59,26 @@ export function Step2 () {
   return (
     <Form>
       <Form.Group>
+        <Form.Label className="text-white">Nome:</Form.Label>
+        <Input type="text" value={form.nome_artista} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome_artista: e.target.value}})} placeholder="Nome do artista" />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label className="text-white">CPF:</Form.Label>
+        <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
+      </Form.Group>
+      <Form.Group>
         <Form.Label className="text-white">Nome Artístico, Banda ou Coletivo:</Form.Label>
         <Input type="text" value={form.nome_artistico} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, nome_artistico: e.target.value }})} placeholder="Nome da banda ou artista" />
       </Form.Group>
       <Form.Group>
         <Form.Label className="text-white">É vinculado a alguma associação do ECAD(Abramus, UBC, etc)?</Form.Label>
         <RadioGroup name="associado" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, associacao: e.target.value}})} >
-          <RadioInput value="ABRAMUS" control={<Radio color="default"/>} label="ABRAMUS" />
+          {associacao.map((ass, index) => (
+            <RadioInput value={ass} control={<Radio color="default"/>} label={ass} />
+          ))}
+          {/* <RadioInput value="ABRAMUS" control={<Radio color="default"/>} label="ABRAMUS" />
           <RadioInput value="UBC" control={<Radio color="default"/>} label="UBC" />
-          <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" />
+          <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" /> */}
         </RadioGroup>
         <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" />
       </Form.Group>
@@ -89,7 +96,7 @@ export function Step2 () {
                   edge="end"
                   onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) } 
                 >
-                  <AddCircle />
+                  <img src={AddCircle} alt="add" />
                 </IconButton>
               </InputAdornment>
             }
@@ -113,7 +120,7 @@ export function Step2 () {
                   edge="end"
                   onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) }
                 >
-                  <AddCircle />
+                 <img src={AddCircle} alt="add" />
                 </IconButton>
               </InputAdornment>
             }

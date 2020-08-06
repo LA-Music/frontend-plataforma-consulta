@@ -6,11 +6,15 @@ import App from './App';
 import './assets/fonts/AvenirNextLTPro-Bold.otf'
 import './assets/fonts/AvenirNextLTPro-Demi.otf'
 import './assets/fonts/AvenirNextLTPro-Regular.otf'
+import { Provider } from 'react-redux';
+import store from './store'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

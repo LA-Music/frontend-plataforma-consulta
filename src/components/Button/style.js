@@ -9,7 +9,7 @@ export const NextSteps = styled(Button)`
   height: 59px;
   span{ 
     color: #ffffff !important;
-    font-family: 'AvenirRegular-600';
+    font-family: 'AvenirBold';
     font-size: 16px;
   }
   &:hover{
@@ -33,7 +33,7 @@ export const LinkButtom = styled.a`
   height: 59px;
   span{ 
     color: #ffffff !important;
-    font-family: 'AvenirRegular-600';
+    font-family: 'AvenirBold';
     font-size: 16px;
   }
   &:hover{
@@ -41,4 +41,8 @@ export const LinkButtom = styled.a`
     color: #ffffff;
     opacity: 0.8;
   }
+`;
+
+export const BtRadio = styled(Button)`
+  
 `;

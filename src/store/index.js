@@ -1,7 +1,11 @@
 import { createStore } from 'redux'
 
 const INITIAL_STATE = {
-  data: { nome: "", 
+  form: false,
+  data: { 
+          who: '',
+          nome_artista: "", 
+          nome: "", 
           email: "", 
           cpf:"", 
           telefone: "", 
@@ -16,9 +20,12 @@ const INITIAL_STATE = {
 function form(state = INITIAL_STATE, action){
   switch (action.type) {
     case 'ADD_FORM':
-      let requiredStep1 = action.payload.email !== '' && action.payload.nome !== '' && action.payload.cpf !== '' ? false : true
+      let requiredStep1 = action.payload.email !== '' && action.payload.nome !== '' ? false : true
 
       return { ...state, data:{...action.payload, requiredStep1: requiredStep1}}
+    case 'INIT_FORM':
+      const { form } = action.payload
+      return {...state, form}
     default:
       return state;
   }
