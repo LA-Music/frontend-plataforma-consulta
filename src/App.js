@@ -76,7 +76,7 @@ function App() {
               <>
               {step === 0 && (
                 <div id="step-1" className="step-1" active={step === 1 ? true : undefined}>
-                  <h2 className="text-white">Dados Pessoais</h2>
+                  <h2 className="text-white AvenirBold">Dados do solicitante</h2>
                   <Step callStep={ e => setForm(e)} />
                   <Button 
                     disabled={form.requiredStep1}
@@ -89,6 +89,7 @@ function App() {
               )}
               {step === 1 && (
                 <div id="step-2" className="step-2" active={step === 2 ? true : undefined}>
+                  <h2 className="text-white AvenirBold">Dados do Artista</h2>
                   <Step2 />
                   <Button 
                     disabled={disabled}
