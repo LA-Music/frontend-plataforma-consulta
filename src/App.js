@@ -36,14 +36,7 @@ function App() {
     setDisabled(true)
     try {
       axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-        nome: data.nome,
-        email: data.email,
-        cpf: data.cpf,
-        associacao: data.associacao,
-        nome_artistico: data.nome_artistico,
-        redes_sociais: data.redes_sociais,
-        telefone: data.telefone,
-        lista_musicas: data.lista_musicas
+        ...data
       })
       .then( res => {
           res.data.msg === 'ok' && setStep(step + 1);
@@ -76,7 +69,7 @@ function App() {
               <>
               {step === 0 && (
                 <div id="step-1" className="step-1" active={step === 1 ? true : undefined}>
-                  <h2 className="text-white AvenirBold">Dados do solicitante</h2>
+                  <h2 className="text-white AvenirBold">{store.data.who === 'producer' ? 'Dados do Solicitante' : 'Dados Pessoais'}</h2>
                   <Step callStep={ e => setForm(e)} />
                   <Button 
                     disabled={form.requiredStep1}

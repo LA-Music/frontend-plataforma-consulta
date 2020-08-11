@@ -4,11 +4,14 @@ const INITIAL_STATE = {
   form: false,
   data: { 
           who: '',
-          nome_artista: "", 
+          papel: '',
           nome: "", 
+          nome_produtor: "",
           email: "", 
+          email_produtor: "",
           cpf:"", 
           telefone: "", 
+          telefone_produtor: "", 
           nome_artistico: "", 
           associacao: "", 
           redes_sociais: [], 
@@ -20,9 +23,10 @@ const INITIAL_STATE = {
 function form(state = INITIAL_STATE, action){
   switch (action.type) {
     case 'ADD_FORM':
-      let requiredStep1 = action.payload.email !== '' && action.payload.nome !== '' ? false : true
+      const { who } = state.data
+      let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email_produtor !== '' && action.payload.nome_produtor !== '' && action.payload.telephone_produtor !== '' ? false : true
 
-      return { ...state, data:{...action.payload, requiredStep1: requiredStep1}}
+      return { ...state, data:{...action.payload, requiredStep1}}
     case 'INIT_FORM':
       const { form } = action.payload
       return {...state, form}

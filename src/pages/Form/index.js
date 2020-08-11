@@ -19,19 +19,44 @@ export function Step (props) {
     <Form>
       <Form.Group>
         <Label className="text-white">Endereço de e-mail:</Label>
-        <Input  type="email"
+        {form.who === 'artist' && (
+          <Input  type="email"
                 isInvalid={!/^[^\s@]+@[^\s.]+\.[\w.]+$/.test(form.email)} 
                 value={form.email} 
                 onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, email: e.target.value}})} 
                 placeholder="exemplo@gmail.com" />
+        )}
+        {form.who === 'producer' && (
+          <Input  type="email"
+                isInvalid={!/^[^\s@]+@[^\s.]+\.[\w.]+$/.test(form.email_produtor)} 
+                value={form.email_produtor} 
+                onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, email_produtor: e.target.value}})} 
+                placeholder="exemplo@gmail.com" />
+        )}
       </Form.Group>
       <Form.Group>
         <Form.Label className="text-white">Seu nome completo:</Form.Label>
-        <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Fernando Santos da Cruz" />
+        {form.who === 'artist' && (
+          <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Fernando Santos da Cruz" />
+        )}
+        {form.who === 'producer' && (
+          <Input type="text" value={form.nome_produtor} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome_produtor: e.target.value}})} placeholder="Fernando Santos da Cruz" />
+        )}
       </Form.Group>
+      {form.who === 'artist' && (
+        <Form.Group>
+          <Form.Label className="text-white">CPF:</Form.Label>
+          <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
+        </Form.Group>)
+      }
       <Form.Group>
         <Form.Label className="text-white">Número de telefone:</Form.Label>
+        {form.who === 'artist' && (
         <Input type="text" value={form.telefone} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, telefone: phoneMask(e.target.value)}})} placeholder="(00) 0 0000-0000" />
+        )}
+        {form.who === 'producer' && (
+        <Input type="text" value={form.telefone_produtor} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, telefone_produtor: phoneMask(e.target.value)}})} placeholder="(00) 0 0000-0000" />
+        )}
       </Form.Group>
     </Form>
   );
@@ -58,14 +83,18 @@ export function Step2 () {
 
   return (
     <Form>
-      <Form.Group>
-        <Form.Label className="text-white">Nome:</Form.Label>
-        <Input type="text" value={form.nome_artista} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome_artista: e.target.value}})} placeholder="Nome do artista" />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label className="text-white">CPF:</Form.Label>
-        <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
-      </Form.Group>
+      {form.who === 'producer' && (
+        <>
+          <Form.Group>
+            <Form.Label className="text-white">Nome:</Form.Label>
+            <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Nome do artista" />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className="text-white">CPF:</Form.Label>
+            <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
+          </Form.Group>
+        </>
+      )}
       <Form.Group>
         <Form.Label className="text-white">Nome Artístico, Banda ou Coletivo:</Form.Label>
         <Input type="text" value={form.nome_artistico} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, nome_artistico: e.target.value }})} placeholder="Nome da banda ou artista" />
@@ -76,11 +105,8 @@ export function Step2 () {
           {associacao.map((ass, index) => (
             <RadioInput value={ass} control={<Radio color="default"/>} label={ass} />
           ))}
-          {/* <RadioInput value="ABRAMUS" control={<Radio color="default"/>} label="ABRAMUS" />
-          <RadioInput value="UBC" control={<Radio color="default"/>} label="UBC" />
-          <RadioInput value="Não sou filiado" control={<Radio color="default"/>} label="Não sou filiado" /> */}
         </RadioGroup>
-        <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" />
+        {/* <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" /> */}
       </Form.Group>
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Redes sociais</Form.Label>
