@@ -19,20 +19,11 @@ export function Step (props) {
     <Form>
       <Form.Group>
         <Label className="text-white">Endereço de e-mail:</Label>
-        {form.who === 'artist' && (
           <Input  type="email"
                 isInvalid={!/^[^\s@]+@[^\s.]+\.[\w.]+$/.test(form.email)} 
                 value={form.email} 
                 onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, email: e.target.value}})} 
                 placeholder="exemplo@gmail.com" />
-        )}
-        {form.who === 'producer' && (
-          <Input  type="email"
-                isInvalid={!/^[^\s@]+@[^\s.]+\.[\w.]+$/.test(form.email_produtor)} 
-                value={form.email_produtor} 
-                onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, email_produtor: e.target.value}})} 
-                placeholder="exemplo@gmail.com" />
-        )}
       </Form.Group>
       <Form.Group>
         <Form.Label className="text-white">Seu nome completo:</Form.Label>

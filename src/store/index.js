@@ -8,7 +8,6 @@ const INITIAL_STATE = {
           nome: "", 
           nome_produtor: "",
           email: "", 
-          email_produtor: "",
           cpf:"", 
           telefone: "", 
           telefone_produtor: "", 
