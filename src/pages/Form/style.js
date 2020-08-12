@@ -6,6 +6,11 @@ export const Label = styled(Form.Label)`
   font-family: 'AvenirRegular-600';
 `;
 
+export const Span = styled.span`
+  color: #A5A5A5;
+  font-family: 'AvenirRegular';
+`;
+
 export const Input = styled(Form.Control)`
   background-color: #2C2C2C !important;
   border: 1px solid #949494 !important;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'
 import { Radio, RadioGroup, FormControl, InputAdornment, IconButton } from '@material-ui/core'
-import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag } from './style'
+import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag, Span } from './style'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import { useSelector, useDispatch } from 'react-redux'
 // import { AddCircle } from '@material-ui/icons'
@@ -38,16 +38,12 @@ export function Step (props) {
         <Form.Group>
           <Form.Label className="text-white">CPF:</Form.Label>
           <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
+          <Span>Facultativo, mas ajuda para evitar homônimo</Span>
         </Form.Group>)
       }
       <Form.Group>
         <Form.Label className="text-white">Número de telefone:</Form.Label>
-        {form.who === 'artist' && (
         <Input type="text" value={form.telefone} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, telefone: phoneMask(e.target.value)}})} placeholder="(00) 0 0000-0000" />
-        )}
-        {form.who === 'producer' && (
-        <Input type="text" value={form.telefone_produtor} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, telefone_produtor: phoneMask(e.target.value)}})} placeholder="(00) 0 0000-0000" />
-        )}
       </Form.Group>
     </Form>
   );
@@ -83,6 +79,7 @@ export function Step2 () {
           <Form.Group>
             <Form.Label className="text-white">CPF:</Form.Label>
             <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
+            <Span>Facultativo, mas ajuda para evitar homônimo</Span>
           </Form.Group>
         </>
       )}

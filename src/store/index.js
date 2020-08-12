@@ -10,7 +10,6 @@ const INITIAL_STATE = {
           email: "", 
           cpf:"", 
           telefone: "", 
-          telefone_produtor: "", 
           nome_artistico: "", 
           associacao: "", 
           redes_sociais: [], 
@@ -23,7 +22,7 @@ function form(state = INITIAL_STATE, action){
   switch (action.type) {
     case 'ADD_FORM':
       const { who } = state.data
-      let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email_produtor !== '' && action.payload.nome_produtor !== '' && action.payload.telephone_produtor !== '' ? false : true
+      let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email !== '' && action.payload.nome_produtor !== ''  ? false : true
 
       return { ...state, data:{...action.payload, requiredStep1}}
     case 'INIT_FORM':

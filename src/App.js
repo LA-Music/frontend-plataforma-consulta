@@ -82,7 +82,7 @@ function App() {
               )}
               {step === 1 && (
                 <div id="step-2" className="step-2" active={step === 2 ? true : undefined}>
-                  <h2 className="text-white AvenirBold">Dados do Artista</h2>
+                  {store.data.who === 'producer' && <h2 className="text-white AvenirBold">Dados do Artista</h2>}
                   <Step2 />
                   <Button 
                     disabled={disabled}
