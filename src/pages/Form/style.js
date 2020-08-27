@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Form } from 'react-bootstrap'
-import { FormControlLabel, FilledInput } from '@material-ui/core'
+import { Form, Modal } from 'react-bootstrap'
+import { FormControlLabel, FilledInput, Link } from '@material-ui/core'
 
 export const Label = styled(Form.Label)`
   font-family: 'AvenirRegular-600';
@@ -66,4 +66,53 @@ export const CloseTag = styled.span`
   cursor: pointer;
   color: #ffffff;
   margin-left: 1rem;
+`;
+
+export const ModalFinally = styled(Modal)`
+  h3{
+    font-size: 1.37rem;
+  }
+  .modal-content{
+    width: 35rem !important;
+    @media(max-width: 1024px){
+      width: 100% !important;
+    }
+    background-color: #fff !important;
+  }
+
+  .modal-content .modal-header{
+    border-bottom: none;
+  }
+
+  .modal-content .modal-title{
+    color: #595959;
+    border-bottom: none;
+  }
+
+  .modal-content .modal-body{
+    border-top: none;
+    color: #595959;
+    text-align: left;
+  }
+`;
+
+export const LinkNavegate = styled(Link)`
+  color: ${props => props.type === 'termos' ? '#9C9C9C' : '#0FBB00' } !important;
+  font-weight: 600 !important;
+  text-decoration:underline !important;
+  font-size: 1rem !important;
+`;
+
+export const ButtonNavigate = styled(Link)`
+  background-color: #0FBB00;
+  color: #fff !important;
+  text-align: center;
+  
+  padding: 1rem 0 1rem 0;
+  border-radius: 4px;
+
+  &:hover{
+    background-color: #0fbb0094;
+    text-decoration: none !important;
+  }
 `;

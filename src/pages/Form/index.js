@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap'
-import { Radio, RadioGroup, FormControl, InputAdornment, IconButton } from '@material-ui/core'
-import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag, Span } from './style'
+import { Form, Modal } from 'react-bootstrap'
+import { Radio, RadioGroup, Checkbox, FormControl, InputAdornment, IconButton } from '@material-ui/core'
+import { Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag, Span, ModalFinally, LinkNavegate, ButtonNavigate } from './style'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import { useSelector, useDispatch } from 'react-redux'
-// import { AddCircle } from '@material-ui/icons'
 import AddCircle from '../../assets/img/addCircle.svg'
 
 export function Step (props) {
@@ -49,12 +48,16 @@ export function Step (props) {
   );
 }
 
-export function Step2 () {
+export function Step2 (props) {
   const [ sociais, setSociais ] = useState()
   const [ musicas, setMusicas ] = useState()
   const [ associacao ] = useState(['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado'])
   const form = useSelector(state => state.data);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    props.callStep(form)
+  }, [form, props])
 
   function removeMusic(e){
     let index = form.lista_musicas.indexOf(`${e}`);
@@ -91,7 +94,7 @@ export function Step2 () {
         <Form.Label className="text-white">É vinculado a alguma associação do ECAD(Abramus, UBC, etc)?</Form.Label>
         <RadioGroup name="associado" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, associacao: e.target.value}})} >
           {associacao.map((ass, index) => (
-            <RadioInput value={ass} control={<Radio color="default"/>} label={ass} />
+            <RadioInput value={ass} key={index} control={<Radio color="default"/>} label={ass} />
           ))}
         </RadioGroup>
         {/* <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" /> */}
@@ -143,9 +146,38 @@ export function Step2 () {
             {form.lista_musicas.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r} <CloseTag onClick={e => removeMusic(r)} title="Remover">x</CloseTag></TagLabel>))}
           </div>
         </FormControl>
+            <RadioInput control={<Checkbox checked={form.newsletter} onChange={ e => dispatch({type: 'TERMOS', payload: {...form, newsletter: !form.newsletter}})} color="default" name="newsletter"/>} label={'Aceito receber novidades e contato da LA Music por e-mail'} />
+            <RadioInput control={<Checkbox checked={form.termos} color="default" onChange={ e => dispatch({type: 'TERMOS', payload: {...form, termos: !form.termos}})} name="termos"/>} label={'Aceito os Termos de Uso e Política de privacidade'} />
+        {/* </RadioGroup> */}
     </Form>
   );
 }
 export function Step3 () {
-  return <TextStep3 className="text-white text-center my-5">Seus dados foram enviados para análise, em algumas horas vamos retornar via e-mail ou ligação</TextStep3>;
+  const [ show, handleShow ] = useState(true)
+  return (
+    <>
+      <TextStep3 className="text-white text-center my-5">Em até 48 horas você receberá um e-mail indicando se existem créditos retidos para receber.</TextStep3>
+      <ModalFinally show={show} onHide={handleShow}>
+        <Modal.Header className="pb-0" closeButton>
+        </Modal.Header>
+        <Modal.Body className="px-5 mb-3">
+          <h3 className="mb-3">Relatório solicitado com sucesso!</h3>
+          <p>Você acaba de solicitar a consulta de Créditos Retidos junto ao ECAD. Estamos processando sua solicitação</p>
+          <p><b>Em até 48horas você receberá um e-mail indicando se existem créditos retidos para receber</b></p>
+          <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos Termos de Uso e Política de Privacidade.</p>
+          <div className="row d-flex justify-content-center flex-column px-5">
+            <ButtonNavigate href="http://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
+            <div className="mt-3 d-flex justify-content-between flex-column flex-sm-row">
+              <LinkNavegate type="backSite" href="https://www.lamusic.com.br/">
+                Voltar para o site
+              </LinkNavegate>
+              <LinkNavegate type="termos" href="https://www.lamusic.com.br/termos-de-uso/" target="_blank">
+                Ver termos de uso
+              </LinkNavegate>
+            </div>
+          </div>
+        </Modal.Body>
+      </ModalFinally>
+    </>
+    );
 }

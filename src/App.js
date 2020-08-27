@@ -6,7 +6,6 @@ import { ArrowRightAlt } from '@material-ui/icons'
 import { Step, Step2, Step3 } from './pages/Form'
 import { useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
-// import store from './store';
 import Footer from './pages/Footer'
 import Button, { Link } from './components/Button'
 import Who from './pages/Who'
@@ -44,7 +43,7 @@ function App() {
         }
       )
       .catch(function(err){
-        if(err.response.status === 500){
+        if(err.response.status === 500 || err.response.status === 400 ){
           setResp(err.response.data.message)
           setShow(true)
           setDisabled(false);
@@ -83,9 +82,9 @@ function App() {
               {step === 1 && (
                 <div id="step-2" className="step-2" active={step === 2 ? true : undefined}>
                   {store.data.who === 'producer' && <h2 className="text-white AvenirBold">Dados do Artista</h2>}
-                  <Step2 />
+                  <Step2 callStep={e => setForm(e)} />
                   <Button 
-                    disabled={disabled}
+                    disabled={form.requiredStep2}
                     colorbutton={button[step].color}
                     className="w-100"
                     onClick={e => submit()} 

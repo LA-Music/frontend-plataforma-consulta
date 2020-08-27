@@ -15,7 +15,9 @@ const INITIAL_STATE = {
           redes_sociais: [], 
           lista_musicas: [],
           requiredStep1: true,
-          requiredStep2: false },
+          requiredStep2: true,
+          termos: false,
+          newsletter: false },
 };
 
 function form(state = INITIAL_STATE, action){
@@ -23,11 +25,13 @@ function form(state = INITIAL_STATE, action){
     case 'ADD_FORM':
       const { who } = state.data
       let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email !== '' && action.payload.nome_produtor !== ''  ? false : true
-
       return { ...state, data:{...action.payload, requiredStep1}}
     case 'INIT_FORM':
       const { form } = action.payload
       return {...state, form}
+    case 'TERMOS':
+      let requiredStep2 = !action.payload.termos
+      return {...state, data:{...state.data, ...action.payload, requiredStep2}}
     default:
       return state;
   }
