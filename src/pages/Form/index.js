@@ -166,7 +166,7 @@ export function Step3 () {
           <p><b>Em até 48horas você receberá um e-mail indicando se existem créditos retidos para receber</b></p>
           <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos Termos de Uso e Política de Privacidade.</p>
           <div className="row d-flex justify-content-center flex-column px-5">
-            <ButtonNavigate href="http://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
+            <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
             <div className="mt-3 d-flex justify-content-between flex-column flex-sm-row">
               <LinkNavegate type="backSite" href="https://www.lamusic.com.br/">
                 Voltar para o site

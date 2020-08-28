@@ -95,11 +95,19 @@ function App() {
               {step === 2 && (
                 <div id="step-3" className="step-3 text-center" active={step === 3 ? true : undefined}>
                   <Step3 />
-                  <Link 
+                  {store.data.who === 'producer' ? (
+                    <Link 
+                    href='https://consulta.lamusic.com.br/'
+                    colorbutton={button[step].color}
+                    text={'Realizar nova consulta'}
+                    className="w-100"/>
+                  ):(
+                    <Link 
                     href='https://lamusic.com.br/'
                     colorbutton={button[step].color}
                     text={button[step].context}
                     className="w-100"/>
+                    )}
                 </div>
               )}
               </>
