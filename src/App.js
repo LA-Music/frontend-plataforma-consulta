@@ -12,8 +12,10 @@ import Who from './pages/Who'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 
-ReactGA.initialize('UA-143795586-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+if(window.location.hostname !== 'localhost'){
+  ReactGA.initialize('UA-143795586-1');
+  ReactGA.pageview(window.location.pathname + window.location.search); 
+}
 
 function App() {
 
