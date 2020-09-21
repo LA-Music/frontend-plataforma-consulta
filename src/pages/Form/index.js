@@ -163,7 +163,7 @@ export function Step3 () {
         <Modal.Body className="px-5 mb-3">
           <h3 className="mb-3">Relatório solicitado com sucesso!</h3>
           <p>Você acaba de solicitar a consulta de Créditos Retidos junto ao ECAD. Estamos processando sua solicitação</p>
-          <p><b>Em até 48horas você receberá um e-mail indicando se existem créditos retidos para receber</b></p>
+          <p><b>Em até 48 horas úteis você receberá um e-mail indicando se existem créditos retidos para receber</b></p>
           <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos Termos de Uso e Política de Privacidade.</p>
           <div className="row d-flex justify-content-center flex-column px-5">
             <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
