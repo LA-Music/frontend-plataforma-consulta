@@ -147,7 +147,7 @@ export function Step2 (props) {
           </div>
         </FormControl>
             <RadioInput control={<Checkbox checked={form.newsletter} onChange={ e => dispatch({type: 'TERMOS', payload: {...form, newsletter: !form.newsletter}})} color="default" name="newsletter"/>} label={'Aceito receber novidades e contato da LA Music por e-mail'} />
-            <RadioInput control={<Checkbox checked={form.termos} color="default" onChange={ e => dispatch({type: 'TERMOS', payload: {...form, termos: !form.termos}})} name="termos"/>} label={'Aceito os Termos de Uso e Política de privacidade'} />
+            <RadioInput control={<Checkbox checked={form.termos} color="default" onChange={ e => dispatch({type: 'TERMOS', payload: {...form, termos: !form.termos}})} name="termos"/>} label={'Autorizo a consulta e estou ciente das condições para realização da busca de Créditos Retidos e confirmo que li e concordo com os Termos de Uso e Política de Privacidade.'} />
         {/* </RadioGroup> */}
     </Form>
   );
@@ -162,9 +162,9 @@ export function Step3 () {
         </Modal.Header>
         <Modal.Body className="px-5 mb-3">
           <h3 className="mb-3">Relatório solicitado com sucesso!</h3>
-          <p>Você acaba de solicitar a consulta de Créditos Retidos junto ao ECAD. Estamos processando sua solicitação</p>
-          <p><b>Em até 48 horas úteis você receberá um e-mail indicando se existem créditos retidos para receber</b></p>
-          <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos Termos de Uso e Política de Privacidade.</p>
+          <p>Você acaba de solicitar a consulta de créditos retidos no Ecad.</p>
+          <p><b>Entraremos em contato com a Associação para processar sua solicitação</b></p>
+          <p>Em até 2 (dois) dias úteis você receberá um e-mail indicando se existem créditos retidos para receber.</p>
           <div className="row d-flex justify-content-center flex-column px-5">
             <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
             <div className="mt-3 d-flex justify-content-between flex-column flex-sm-row">
