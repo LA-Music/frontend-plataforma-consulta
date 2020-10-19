@@ -13,7 +13,7 @@ import axios from 'axios'
 import ReactGA from 'react-ga'
 
 if(window.location.hostname !== 'localhost'){
-  ReactGA.initialize('UA-143795586-1');
+  ReactGA.initialize('G-K22FMYRW56');
   ReactGA.pageview(window.location.pathname + window.location.search); 
 }
 
