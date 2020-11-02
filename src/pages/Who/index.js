@@ -1,10 +1,11 @@
 import React from 'react';
-import Song from '../../assets/img/song.svg'
-import SongWhite from '../../assets/img/songWhite.svg'
-import Economic from '../../assets/img/economic.svg'
-import EconomicWhite from '../../assets/img/economicWhite.svg'
+import {Card, CardHeader, CardFooter, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
+import { AiFillStar } from 'react-icons/ai'
+import SongBlack from '../../assets/img/songBlack.svg'
+import Vinyls from '../../assets/img/vinyls.svg'
+import EconomicBlack from '../../assets/img/economicBlack.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { Title, ButtonRadio, Next } from './styles';
+import { Title, Value, Next, Container, Budget } from './styles';
 
 function Who(props) {
   const dispatch = useDispatch();
@@ -12,18 +13,84 @@ function Who(props) {
 
   const handlePapel = (who, papel) => dispatch({type: 'ADD_FORM', payload: {...data, who, papel}})
 
-  return (
-    <>
-      <Title className="mb-4">Quem você é ?</Title>
-      <ButtonRadio onClick={() => handlePapel('artist', 'artista')} selected={data.who === 'artist'} className="d-block text-center w-100 text-capitalize py-3 my-3">
-        <img src={data.who === 'artist' ? SongWhite :Song} alt="Song" className="mr-4 img-fluid" /> Artista
-      </ButtonRadio>
-      <ButtonRadio onClick={() => handlePapel('producer', 'produtor')} selected={data.who === 'producer'} className="d-block text-center w-100 text-capitalize py-3 my-3">
-        <img src={data.who === 'producer' ? EconomicWhite : Economic} alt="producer" className="mr-3 img-fluid" /> Produtor/Empresário
-      </ButtonRadio>
-      <Next variant="contained" disabled={data.who !== '' ? false : true} onClick={() => dispatch({type: 'INIT_FORM', payload: {form: true}})} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+  const next = async (who, papel) => {
+    await handlePapel(who, papel)
+    dispatch({type: 'INIT_FORM', payload: {form: true}})
+  }
 
-    </>
+  return (
+    <Container>
+      <Title className="mb-4">Quem você é ?</Title>
+      <div className="row w-100">
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+        <Card style={{border: 'none'}}>
+        <Budget style={{opacity:0}}>
+            <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>
+            LA Pro</Budget>
+          <CardHeader className="justify-content-center align-items-center d-flex" style={{height: '91px', backgroundColor: '#fff'}}>
+            <CardTitle className="m-0 d-flex align-items-center justify-content-center"><img src={SongBlack} alt="Song" className="mr-4 img-fluid" /> Artista</CardTitle>
+          </CardHeader>
+          <CardBody style={{height: '258px'}}>
+            <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
+            <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
+              <li className="my-2">Solicitação gratuíta</li>
+              <li className="my-2">1 Solicitação</li>
+              <li className="my-2">Retornao em até 48horas</li>
+            </ul>
+          </CardBody>
+          <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
+            <Value color="#0FBB00">Gratuíto</Value>
+          </CardFooter>
+          <Next bg="#0FBB00" variant="contained" onClick={() => next('artist', 'artista')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+        </Card>
+    </div>
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+        <Card style={{border: 'none'}}>
+        <Budget style={{opacity:0}}>
+            <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>
+            LA Pro</Budget>
+          <CardHeader className="justify-content-center align-items-center d-flex" style={{height: '91px', backgroundColor: '#fff'}}>
+            <CardTitle className="m-0 d-flex align-items-center justify-content-center"><img src={EconomicBlack} alt="producer" className="mr-3 img-fluid" /> Produtores e Empresários</CardTitle>
+          </CardHeader>
+          <CardBody style={{height: '258px'}}>
+            <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
+            <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
+              <li className="my-2">Solicitação gratuíta</li>
+              <li className="my-2">Consulta p/ até 5 artistas</li>
+              <li className="my-2">Retornao em até 48 horas</li>
+            </ul>
+          </CardBody>
+          <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
+            <Value color="#0FBB00">Gratuíto</Value>
+          </CardFooter>
+          <Next bg="#0FBB00" variant="contained" onClick={() => next('producer', 'produtor')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+        </Card>
+    </div>
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+        <Card style={{border: 'none'}}>
+          <Budget>
+            <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>
+            LA Pro</Budget>
+          <CardHeader className="justify-content-center align-items-center d-flex" style={{height: '91px', backgroundColor: '#fff'}}>
+            <CardTitle className="m-0 d-flex align-items-center justify-content-center"><img src={data.who === 'artist' ? Vinyls : Vinyls} alt="Song" className="mr-4 img-fluid" /> para Editoras </CardTitle>
+          </CardHeader>
+          <CardBody style={{height: '258px'}}>
+            <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
+            <ul className="ul-orange" style={{height: '100%', paddingLeft: '1.5rem'}}>
+              <li className="my-2">Consulte e gerencie os créditos retidos de todos os seus artistas</li>
+              <li className="my-2">Coleta de fonomecânico sem burocracia</li>
+              <li className="my-2">Consultoria em direito autoral </li>
+              <li className="my-2">Taxa de administração para liberação de retidos negociável </li>
+            </ul>
+          </CardBody>
+          <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
+            <Value color="#FFC107">R$ 99,00</Value>
+          </CardFooter>
+           <Next variant="contained" bg="#FFC107" onClick={() => next('editors', 'editoras')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+        </Card>
+    </div>
+    </div>
+    </Container >
     );
 }
 

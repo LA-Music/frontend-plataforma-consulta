@@ -1,6 +1,27 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core'
 
+
+export const Container = styled.div``;
+
+export const Budget = styled.div`
+  margin: -2.5% 0 0 1.5rem;
+  width: 206px;
+  height: 30px;
+
+  background: #FFC107;
+  border-radius: 19px;
+
+  display: flex;
+  align-items: center;
+  
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #FFFFFF;
+`;
+
 export const Title = styled.h1`
   color: #fff;
   font-family: 'AvenirBold';
@@ -20,7 +41,7 @@ export const ButtonRadio = styled.div`
 `;
 
 export const Next = styled(Button)`
-  background: ${props => props.disabled ? '#a1a2a1' : '#0FBB00' } !important;
+  background: ${props => props.bg} !important;
   color: #fff !important;
   border-radius: 4px !important;
   box-sizing: border-box !important;
@@ -30,4 +51,11 @@ export const Next = styled(Button)`
   &:hover{
     opacity: 0.8;
   }
+`;
+
+export const Value = styled.h5`
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  color: ${props => props.color}
 `;

@@ -9,6 +9,7 @@ import { Modal } from 'react-bootstrap';
 import Footer from './pages/Footer'
 import Button, { Link } from './components/Button'
 import Who from './pages/Who'
+import Editor from './pages/Form/Editors'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 
@@ -57,14 +58,18 @@ function App() {
     }
   }
 
-
+console.log(store.data.who)
   return (
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
-        <div className="my-5 d-flex jutify-content-center mx-auto flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
-          <div className="order-3 order-sm-1" style={{width: '30vw'}}></div>
+        <div className="my-5 d-flex justify-content-center mx-auto flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
+          <div className="order-3 order-sm-1 d-flex justify-content-center align-items-center"></div>
           <div className="sessao-meio order-2 order-sm-2">
-            {!store.form ? (
+            {store.data.who === 'editors' ? (
+              <div className="sessao-meio order-2 order-sm-2 d-flex justify-content-center">
+              <Editor />
+              </div>
+            ) : (!store.form ? (
               <Who {...store} />
               ) : 
               <>
@@ -113,9 +118,9 @@ function App() {
                 </div>
               )}
               </>
-              }
+            )}
           </div>
-          {store.form && (
+          {store.data.who !== 'editors' && store.form && (
             <div className="sessaoNum d-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center order-1 order-sm-3">
               <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
               <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
