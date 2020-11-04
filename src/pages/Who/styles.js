@@ -9,7 +9,8 @@ export const Budget = styled.div`
   width: 206px;
   height: 30px;
 
-  background: #FFC107;
+  background: gray;
+  /* background: #FFC107; */
   border-radius: 19px;
 
   display: flex;
