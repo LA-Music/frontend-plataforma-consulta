@@ -11,12 +11,12 @@ import Button, { Link } from './components/Button'
 import Who from './pages/Who'
 import Editor from './pages/Form/Editors'
 import axios from 'axios'
-import ReactGA from 'react-ga'
+// import ReactGA from 'react-ga'
 
-if(window.location.hostname !== 'localhost'){
-  ReactGA.initialize('G-K22FMYRW56');
-  ReactGA.pageview(window.location.pathname + window.location.search); 
-}
+// // if(window.location.hostname !== 'localhost'){
+// //   ReactGA.initialize('G-K22FMYRW56');
+// //   ReactGA.pageview(window.location.pathname + window.location.search); 
+// // }
 
 function App() {
 
@@ -58,7 +58,6 @@ function App() {
     }
   }
 
-console.log(store.data.who)
   return (
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
