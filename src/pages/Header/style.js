@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Header = styled.header`
   background-image: url(${props => props.background});
+  background-color: #372210;
   background-repeat: no-repeat;
   background-position: right;
   background-size: cover;
