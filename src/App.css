@@ -113,7 +113,19 @@
 
 @media (max-width: 768px) { 
   .sessao-meio{
-    width: 90vw;
+    /* width: 90vw; */
+    margin: 0 10px;
+  }
+  .sessaoNum{
+    width: 50vw;
+  }
+}
+
+@media (max-width: 1900px) { 
+  .sessao-meio{
+    width: 95vw;
+    max-width: 1400px;
+    margin: 0 10px;
   }
   .sessaoNum{
     width: 50vw;

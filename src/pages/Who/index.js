@@ -20,8 +20,8 @@ function Who(props) {
 
   return (
     <Container>
-      <Title className="mb-4">Quem você é ?</Title>
-      <div className="row w-100">
+      <Title className="mb-4 mx-3">Quem você é ?</Title>
+      <div className="row w-100 mx-auto">
       <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
         <Card style={{border: 'none'}}>
         <Budget style={{opacity:0}}>
