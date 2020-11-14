@@ -9,7 +9,7 @@ function Editors() {
     name: '',
     nome_empresa: '',
     cpf_cnpj: '',
-    telefone: '',
+    telefone: ''
   })
 
   const handleForm = async (e) => {

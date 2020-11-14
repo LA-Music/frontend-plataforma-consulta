@@ -111,9 +111,10 @@
   color: #EAB41F;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 990px) { 
   .sessao-meio{
-    /* width: 90vw; */
+
+    max-width: 980px !important;
     margin: 0 10px;
   }
   .sessaoNum{
