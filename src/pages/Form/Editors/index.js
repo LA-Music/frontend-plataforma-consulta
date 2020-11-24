@@ -47,9 +47,10 @@ function Editors() {
               email: form.email,
               senha: form.senha
             }).then( res => {
-              window.location.href = 'https://app.lamusic.com.br/pro/';
-              document.cookie = "lamusic-Token="+res.data.token+";path=/"
-              document.cookie = "lamusic-Papel="+res.data.papel+";path=/"
+              document.cookie = "lamusic-Token="+res.data.token+";path=/pro"
+              document.cookie = "lamusic-Papel="+res.data.papel+";path=/pro"
+              document.cookie = "lamusic-email="+form.nome+";path=/pro"
+              window.location.href = 'https://app.lamusic.com.br/pro';
               setOpen(false)
             }).catch(error => {
               setError(error.response.data.message)
