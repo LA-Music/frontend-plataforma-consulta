@@ -35,7 +35,7 @@ function Who(props) {
             <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
               <li className="my-2">Solicitação gratuíta</li>
               <li className="my-2">1 Solicitação</li>
-              <li className="my-2">Retornao em até 48horas</li>
+              <li className="my-2">Retorno em até 48 horas</li>
             </ul>
           </CardBody>
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
@@ -57,7 +57,7 @@ function Who(props) {
             <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
               <li className="my-2">Solicitação gratuíta</li>
               <li className="my-2">Consulta p/ até 5 artistas</li>
-              <li className="my-2">Retornao em até 48 horas</li>
+              <li className="my-2">Retorno em até 48 horas</li>
             </ul>
           </CardBody>
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
