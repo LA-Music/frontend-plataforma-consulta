@@ -25,10 +25,14 @@ function Who(props) {
       <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
         <Card style={{border: 'none'}}>
         <Budget style={{opacity:0}}>
-            <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>
+            <div className="mx-3">
+              <AiFillStar/>
+              <AiFillStar/>
+              <AiFillStar/>
+            </div>
             LA Pro</Budget>
           <CardHeader className="justify-content-center align-items-center d-flex" style={{height: '91px', backgroundColor: '#fff'}}>
-            <CardTitle className="m-0 d-flex align-items-center justify-content-center"><img src={SongBlack} alt="Song" className="mr-4 img-fluid" /> Artista</CardTitle>
+            <CardTitle className="m-0 d-flex align-items-center justify-content-center"><img src={SongBlack} alt="Song" className="mr-4 img-fluid" /> Músicos e Compositores </CardTitle>
           </CardHeader>
           <CardBody style={{height: '258px'}}>
             <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
