@@ -7,13 +7,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import AddCircle from '../../assets/img/addCircle.svg'
 
 export function Step (props) {
-  const form = useSelector(state => state.data);
+  const {data:form, settings:{pathname} } = useSelector(state => state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     props.callStep(form)
   }, [form, props])
-  
+
   return (
     <Form>
       <Form.Group>
@@ -26,14 +27,14 @@ export function Step (props) {
       </Form.Group>
       <Form.Group>
         <Form.Label className="text-white">Seu nome completo:</Form.Label>
-        {form.who === 'artist' && (
-          <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Fernando Santos da Cruz" />
+        {(form.who === 'artist' || pathname === '/artista') && (
+          <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="a Fernando Santos da Cruz" />
         )}
-        {form.who === 'producer' && (
+        {form.who === 'producer' && pathname !== '/artista' && (
           <Input type="text" value={form.nome_produtor} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome_produtor: e.target.value}})} placeholder="Fernando Santos da Cruz" />
         )}
       </Form.Group>
-      {form.who === 'artist' && (
+      {(form.who === 'artist' || pathname === '/artista') && (
         <Form.Group>
           <Form.Label className="text-white">CPF:</Form.Label>
           <Input type="text" value={form.cpf} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, cpf: cpfMask(e.target.value)}})} placeholder="999.999.999-99" />
@@ -52,6 +53,7 @@ export function Step2 (props) {
   const [ sociais, setSociais ] = useState()
   const [ musicas, setMusicas ] = useState()
   const [ associacao ] = useState(['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado'])
+
   const form = useSelector(state => state.data);
   const dispatch = useDispatch();
 
@@ -97,7 +99,6 @@ export function Step2 (props) {
             <RadioInput value={ass} key={index} control={<Radio color="default"/>} label={ass} />
           ))}
         </RadioGroup>
-        {/* <Input type="text" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, associacao: e.target.value }})} placeholder="sou filiado a outra associação. Qual?" /> */}
       </Form.Group>
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Redes sociais</Form.Label>
@@ -123,32 +124,31 @@ export function Step2 (props) {
           </div>
         </FormControl>
       <FormControl className="w-100 mb-3" variant="filled">
-          <Form.Label className="text-white">Lista de Músicas</Form.Label>
-          <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
-          <InputButtom
-            value={musicas}
-            onChange={ async e => setMusicas(e.target.value)}
-            placeholder="Nome da música"
-            id="filled-adornment-password"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  edge="end"
-                  onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) }
-                >
-                 <img src={AddCircle} alt="add" />
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          <div className="w-100 d-flex row mx-auto">
-            {form.lista_musicas.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r} <CloseTag onClick={e => removeMusic(r)} title="Remover">x</CloseTag></TagLabel>))}
-          </div>
-        </FormControl>
-            <RadioInput control={<Checkbox checked={form.newsletter} onChange={ e => dispatch({type: 'TERMOS', payload: {...form, newsletter: !form.newsletter}})} color="default" name="newsletter"/>} label={'Aceito receber novidades e contato da LA Music por e-mail'} />
-            <RadioInput control={<Checkbox checked={form.termos} color="default" onChange={ e => dispatch({type: 'TERMOS', payload: {...form, termos: !form.termos}})} name="termos"/>} label={'Autorizo a consulta e estou ciente das condições para realização da busca de Créditos Retidos e confirmo que li e concordo com os Termos de Uso e Política de Privacidade.'} />
-        {/* </RadioGroup> */}
+        <Form.Label className="text-white">Lista de Músicas</Form.Label>
+        <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
+        <InputButtom
+          value={musicas}
+          onChange={ async e => setMusicas(e.target.value)}
+          placeholder="Nome da música"
+          id="filled-adornment-password"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                edge="end"
+                onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) }
+              >
+                <img src={AddCircle} alt="add" />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+        <div className="w-100 d-flex row mx-auto">
+          {form.lista_musicas.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r} <CloseTag onClick={e => removeMusic(r)} title="Remover">x</CloseTag></TagLabel>))}
+        </div>
+      </FormControl>
+      <RadioInput control={<Checkbox checked={form.newsletter} onChange={ e => dispatch({type: 'TERMOS', payload: {...form, newsletter: !form.newsletter}})} color="default" name="newsletter"/>} label={'Aceito receber novidades e contato da LA Music por e-mail'} />
+      <RadioInput control={<Checkbox checked={form.termos} color="default" onChange={ e => dispatch({type: 'TERMOS', payload: {...form, termos: !form.termos}})} name="termos"/>} label={'Autorizo a consulta e estou ciente das condições para realização da busca de Créditos Retidos e confirmo que li e concordo com os Termos de Uso e Política de Privacidade.'} />
     </Form>
   );
 }

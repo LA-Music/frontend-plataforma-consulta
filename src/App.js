@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './pages/Header'
 import { CircularProgress } from '@material-ui/core'
 import { ArrowRightAlt } from '@material-ui/icons'
 import { Step, Step2, Step3 } from './pages/Form'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import Footer from './pages/Footer'
 import Button, { Link } from './components/Button'
 import Who from './pages/Who'
 import Editor from './pages/Form/Editors'
 import axios from 'axios'
-import ReactGA from 'react-ga'
-
-if(window.location.hostname !== 'localhost'){
-  ReactGA.initialize('G-K22FMYRW56');
-  ReactGA.pageview(window.location.pathname + window.location.search); 
-}
 
 function App() {
-
+  const dispatch = useDispatch()
   const store = useSelector(state => state)
   
   const [ step, setStep ] = useState(0)
@@ -28,7 +22,15 @@ function App() {
   const [ form, setForm ] = useState(store.data)
   const [ show, setShow ] = useState()
   const [ resp, setResp ] = useState('')
-  
+  const [ pathname ] = useState(window.location.pathname)
+
+  useEffect(() => {
+    settings()
+      async function settings() {
+        await dispatch({type: 'SET_PATHNAME', payload: window.location.pathname })
+      }
+  },[]) //eslint-disable-line
+
   const handleClose = () => {
     setShow(false)
   };
@@ -58,7 +60,6 @@ function App() {
     }
   }
 
-console.log(store.data.who)
   return (
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
@@ -76,7 +77,7 @@ console.log(store.data.who)
               <div className="sessao-meio order-2 order-sm-2 d-flex justify-content-center">
                 <Editor />
               </div>
-            ) : (!store.form ? (
+            ) : (!store.form && pathname !== '/artista' ? (
               <Who {...store} />
               ) : 
               <>
@@ -121,7 +122,7 @@ console.log(store.data.who)
                       colorbutton={button[step].color}
                       text={button[step].context}
                       className="w-100"/>
-                      )}
+                    )}
                   </div>
                 )}
               </>

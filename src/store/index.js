@@ -3,21 +3,25 @@ import { createStore } from 'redux'
 const INITIAL_STATE = {
   form: false,
   data: { 
-          who: '',
-          papel: '',
-          nome: "", 
-          nome_produtor: "",
-          email: "", 
-          cpf:"", 
-          telefone: "", 
-          nome_artistico: "", 
-          associacao: "", 
-          redes_sociais: [], 
-          lista_musicas: [],
-          requiredStep1: true,
-          requiredStep2: true,
-          termos: false,
-          newsletter: false },
+    who: '',
+    papel: '',
+    nome: "", 
+    nome_produtor: "",
+    email: "", 
+    cpf:"", 
+    telefone: "", 
+    nome_artistico: "", 
+    associacao: "", 
+    redes_sociais: [], 
+    lista_musicas: [],
+    requiredStep1: true,
+    requiredStep2: true,
+    termos: false,
+    newsletter: false 
+  },
+  settings: {
+    pathname: ''
+  }
 };
 
 function form(state = INITIAL_STATE, action){
@@ -32,6 +36,8 @@ function form(state = INITIAL_STATE, action){
     case 'TERMOS':
       let requiredStep2 = !action.payload.termos
       return {...state, data:{...state.data, ...action.payload, requiredStep2}}
+    case 'SET_PATHNAME': 
+      return {...state, settings: {...state.settings, pathname: action.payload}}
     default:
       return state;
   }
