@@ -61,9 +61,9 @@
 .sessao-meio{
   width: 70vw;
 }
-.sessaoNum{
-  /* width: 30vw; */
-}
+/* .sessaoNum{
+   width: 30vw; 
+} */
 
 .modal-content{
   background-color: #dc4848 !important;
@@ -117,20 +117,20 @@
     max-width: 980px !important;
     margin: 0 10px;
   }
-  .sessaoNum{
+  /* .sessaoNum{
     width: 50vw;
-  }
+  } */
 }
 
 @media (max-width: 1900px) { 
   .sessao-meio{
     width: 95vw;
-    max-width: 1400px;
+    max-width: 1180px;
     margin: 0 10px;
   }
-  .sessaoNum{
+  /* .sessaoNum{
     width: 50vw;
-  }
+  } */
 }
 
 

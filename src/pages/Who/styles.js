@@ -2,7 +2,13 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core'
 
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+
+  @media(max-width: 768px) {
+    width: 70%;
+  }
+`;
 
 export const Budget = styled.div`
   margin: -2.5% 0 0 1.5rem;

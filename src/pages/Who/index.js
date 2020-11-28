@@ -22,7 +22,7 @@ function Who(props) {
     <Container>
       <Title className="mb-4 mx-3">Quem você é ?</Title>
       <div className="row w-100 mx-auto">
-      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-4 col-lg-4 px-3" >
         <Card style={{border: 'none'}}>
         <Budget style={{opacity:0}}>
             <div className="mx-3">
@@ -48,7 +48,7 @@ function Who(props) {
           <Next bg="#0FBB00" variant="contained" onClick={() => next('artist', 'artista')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
         </Card>
     </div>
-      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-4 col-lg-4 px-3" >
         <Card style={{border: 'none'}}>
         <Budget style={{opacity:0}}>
             <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>
@@ -70,7 +70,7 @@ function Who(props) {
           <Next bg="#0FBB00" variant="contained" onClick={() => next('producer', 'produtor')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
         </Card>
     </div>
-      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-12 col-lg-4 px-3" style={{width: '347px'}}>
+      <div className="col-xs-12 mb-3 col-xl-4 col-sm-12 col-md-4 col-lg-4 px-3" >
         <Card style={{border: 'none'}}>
           <Budget>
             <div className="mx-3"><AiFillStar/><AiFillStar/><AiFillStar/></div>

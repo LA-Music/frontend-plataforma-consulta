@@ -62,71 +62,78 @@ console.log(store.data.who)
   return (
     <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
       <Header />
-        <div className="my-5 d-flex justify-content-center mx-auto flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh'}}>
+        <div className="my-5 d-flex justify-content-center flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh', marginRight: '20px', marginLeft: '20px'}}>
           <div className="order-3 order-sm-1 d-flex justify-content-center align-items-center"></div>
-          <div className="sessao-meio order-2 order-sm-2">
+          <div className="sessao-meio d-flex flex-column flex-sm-row align-items-center justify-content-center order-2 order-sm-2">
+            {store.data.who !== 'editors' && store.form && (
+              <div className="sessaoNum d-flex d-sm-none ml-sm-5 mb-5 flex-row flex-sm-column justify-content-between justify-content-sm-center">
+                <span className={`num-Steps mb-0 ${step === 0 ? 'active' : ''}`}>1</span>
+                <span className={`num-Steps mb-0 mx-5 ${step === 1 ? 'active' : ''}`}>2</span>
+                <span className={`num-Steps mb-0 ${step === 2 ? 'active' : ''}`}>3</span>
+              </div>
+            )}
             {store.data.who === 'editors' ? (
               <div className="sessao-meio order-2 order-sm-2 d-flex justify-content-center">
-              <Editor />
+                <Editor />
               </div>
             ) : (!store.form ? (
               <Who {...store} />
               ) : 
               <>
-              {step === 0 && (
-                <div id="step-1" className="step-1" active={step === 1 ? true : undefined}>
-                  <h2 className="text-white AvenirBold">{store.data.who === 'producer' ? 'Dados do Solicitante' : 'Dados Pessoais'}</h2>
-                  <Step callStep={ e => setForm(e)} />
-                  <Button 
-                    disabled={form.requiredStep1}
-                    colorbutton={button[step].color}
-                    className="w-100"
-                    onClick={e => step < 2 ? setStep(step + 1) : setStep(0)} 
-                    text={button[step].context}
-                    endIcon={step === 0 && <ArrowRightAlt />} />
-                </div>
-              )}
-              {step === 1 && (
-                <div id="step-2" className="step-2" active={step === 2 ? true : undefined}>
-                  {store.data.who === 'producer' && <h2 className="text-white AvenirBold">Dados do Artista</h2>}
-                  <Step2 callStep={e => setForm(e)} />
-                  <Button 
-                    disabled={form.requiredStep2}
-                    colorbutton={button[step].color}
-                    className="w-100"
-                    onClick={e => submit()} 
-                    text={button[step].context}
-                    endIcon={step === 0 && <ArrowRightAlt />} />
-                </div>
-              )}
-              {step === 2 && (
-                <div id="step-3" className="step-3 text-center" active={step === 3 ? true : undefined}>
-                  <Step3 />
-                  {store.data.who === 'producer' ? (
-                    <Link 
-                    href='https://consulta.lamusic.com.br/'
-                    colorbutton={button[step].color}
-                    text={'Realizar nova consulta'}
-                    className="w-100"/>
-                  ):(
-                    <Link 
-                    href='https://lamusic.com.br/'
-                    colorbutton={button[step].color}
-                    text={button[step].context}
-                    className="w-100"/>
-                    )}
-                </div>
-              )}
+                {step === 0 && (
+                  <div id="step-1" className="step-1 w-100" active={step === 1 ? true : undefined}>
+                    <h2 className="text-white AvenirBold">{store.data.who === 'producer' ? 'Dados do Solicitante' : 'Dados Pessoais'}</h2>
+                    <Step callStep={ e => setForm(e)} />
+                    <Button 
+                      disabled={form.requiredStep1}
+                      colorbutton={button[step].color}
+                      className="w-100"
+                      onClick={e => step < 2 ? setStep(step + 1) : setStep(0)} 
+                      text={button[step].context}
+                      endIcon={step === 0 && <ArrowRightAlt />} />
+                  </div>
+                )}
+                {step === 1 && (
+                  <div id="step-2" className="step-2 w-100" active={step === 2 ? true : undefined}>
+                    {store.data.who === 'producer' && <h2 className="text-white AvenirBold">Dados do Artista</h2>}
+                    <Step2 callStep={e => setForm(e)} />
+                    <Button 
+                      disabled={form.requiredStep2}
+                      colorbutton={button[step].color}
+                      className="w-100"
+                      onClick={e => submit()} 
+                      text={button[step].context}
+                      endIcon={step === 0 && <ArrowRightAlt />} />
+                  </div>
+                )}
+                {step === 2 && (
+                  <div id="step-3" className="step-3 w-100 text-center" active={step === 3 ? true : undefined}>
+                    <Step3 />
+                    {store.data.who === 'producer' ? (
+                      <Link 
+                      href='https://consulta.lamusic.com.br/'
+                      colorbutton={button[step].color}
+                      text={'Realizar nova consulta'}
+                      className="w-100"/>
+                    ):(
+                      <Link 
+                      href='https://lamusic.com.br/'
+                      colorbutton={button[step].color}
+                      text={button[step].context}
+                      className="w-100"/>
+                      )}
+                  </div>
+                )}
               </>
             )}
+            {store.data.who !== 'editors' && store.form && (
+              <div className="sessaoNum d-none d-sm-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center ">
+                <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
+                <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
+                <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
+              </div>
+            )}
           </div>
-          {store.data.who !== 'editors' && store.form && (
-            <div className="sessaoNum d-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center order-1 order-sm-3">
-              <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
-              <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
-              <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
-            </div>
-          )}
             <Modal show={show} onHide={handleClose}>
               <Modal.Body>{resp}</Modal.Body>
               <Modal.Footer className="d-flex justify-content-center">
