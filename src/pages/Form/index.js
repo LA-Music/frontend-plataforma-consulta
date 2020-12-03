@@ -28,7 +28,7 @@ export function Step (props) {
       <Form.Group>
         <Form.Label className="text-white">Seu nome completo:</Form.Label>
         {(form.who === 'artist' || pathname === '/artista') && (
-          <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="a Fernando Santos da Cruz" />
+          <Input type="text" value={form.nome} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome: e.target.value}})} placeholder="Fernando Santos da Cruz" />
         )}
         {form.who === 'producer' && pathname !== '/artista' && (
           <Input type="text" value={form.nome_produtor} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, nome_produtor: e.target.value}})} placeholder="Fernando Santos da Cruz" />

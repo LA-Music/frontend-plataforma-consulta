@@ -37,13 +37,13 @@ function Who(props) {
           <CardBody style={{height: '258px'}}>
             <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
             <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
-              <li className="my-2">Solicitação gratuíta</li>
+              <li className="my-2">Solicitação gratuita</li>
               <li className="my-2">1 Solicitação</li>
               <li className="my-2">Retorno em até 48 horas</li>
             </ul>
           </CardBody>
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
-            <Value color="#0FBB00">Gratuíto</Value>
+            <Value color="#0FBB00">Gratuito</Value>
           </CardFooter>
           <Next bg="#0FBB00" variant="contained" onClick={() => next('artist', 'artista')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
         </Card>
@@ -59,13 +59,13 @@ function Who(props) {
           <CardBody style={{height: '258px'}}>
             <CardSubtitle style={{fontWeight: 'bold'}} className="mb-3">Vantagens</CardSubtitle>
             <ul className="ul-green" style={{height: '100%', paddingLeft: '1.5rem'}}>
-              <li className="my-2">Solicitação gratuíta</li>
+              <li className="my-2">Solicitação gratuita</li>
               <li className="my-2">Consulta p/ até 5 artistas</li>
               <li className="my-2">Retorno em até 48 horas</li>
             </ul>
           </CardBody>
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
-            <Value color="#0FBB00">Gratuíto</Value>
+            <Value color="#0FBB00">Gratuito</Value>
           </CardFooter>
           <Next bg="#0FBB00" variant="contained" onClick={() => next('producer', 'produtor')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
         </Card>

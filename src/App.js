@@ -68,9 +68,9 @@ function App() {
           <div className="sessao-meio d-flex flex-column flex-sm-row align-items-center justify-content-center order-2 order-sm-2">
             {store.data.who !== 'editors' && store.form && (
               <div className="sessaoNum d-flex d-sm-none ml-sm-5 mb-5 flex-row flex-sm-column justify-content-between justify-content-sm-center">
-                <span className={`num-Steps mb-0 ${step === 0 ? 'active' : ''}`}>1</span>
-                <span className={`num-Steps mb-0 mx-5 ${step === 1 ? 'active' : ''}`}>2</span>
-                <span className={`num-Steps mb-0 ${step === 2 ? 'active' : ''}`}>3</span>
+                <span onClick={() => step > 0 && setStep(0)} className={`num-Steps mb-0 ${step === 0 ? 'active' : ''}`}>1</span>
+                <span onClick={() => step > 1 && setStep(1)} className={`num-Steps mb-0 mx-5 ${step === 1 ? 'active' : ''}`}>2</span>
+                <span onClick={() => step === 2 && setStep(2)} className={`num-Steps mb-0 ${step === 2 ? 'active' : ''}`}>3</span>
               </div>
             )}
             {store.data.who === 'editors' ? (
@@ -129,9 +129,9 @@ function App() {
             )}
             {store.data.who !== 'editors' && store.form && (
               <div className="sessaoNum d-none d-sm-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center ">
-                <span className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
-                <span className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
-                <span className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
+                <span onClick={() => step > 0 && setStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
+                <span onClick={() => step > 1 && setStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
+                <span onClick={() => step >=2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
               </div>
             )}
           </div>

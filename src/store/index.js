@@ -26,15 +26,17 @@ const INITIAL_STATE = {
 
 function form(state = INITIAL_STATE, action){
   switch (action.type) {
-    case 'ADD_FORM':
+    case 'ADD_FORM':{
       const { who } = state.data
       let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email !== '' && action.payload.nome_produtor !== ''  ? false : true
-      return { ...state, data:{...action.payload, requiredStep1}}
+      let requiredStep2 = (action.payload.termos && action.payload.nome !== '') ? false : true
+      return { ...state, data:{...action.payload, requiredStep1, requiredStep2}}
+    }
     case 'INIT_FORM':
       const { form } = action.payload
       return {...state, form}
     case 'TERMOS':
-      let requiredStep2 = !action.payload.termos
+      let requiredStep2 = (action.payload.termos && action.payload.nome !== '') ? false : true
       return {...state, data:{...state.data, ...action.payload, requiredStep2}}
     case 'SET_PATHNAME': 
       return {...state, settings: {...state.settings, pathname: action.payload}}
