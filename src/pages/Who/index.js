@@ -88,10 +88,10 @@ function Who(props) {
             </ul>
           </CardBody>
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
-            <Value color="gray">Em breve</Value>
-            {/* <Value color="gray">R$ 99,00</Value> */}
+            <Value color="#FFC107">Grátis</Value>
           </CardFooter>
-           <Next variant="contained" disabled={true} bg="gray" onClick={() => next('editors', 'editoras')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+           <Next variant="contained" bg="#FFC107" onClick={() => window.open('https://app.lamusic.com.br/pro')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+           {/* <Next variant="contained" bg="#FFC107" onClick={() => next('editors', 'editoras')} className="d-block w-100 py-3 text-capitalize">Próxima</Next> */}
         </Card>
     </div>
     </div>

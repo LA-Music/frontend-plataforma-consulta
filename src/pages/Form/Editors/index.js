@@ -8,8 +8,10 @@ function Editors() {
     email: '',
     name: '',
     nome_empresa: '',
-    cpf_cnpj: '',
-    telefone: ''
+    telefone: '',
+    senha: '',
+    papel: 'pro',
+    error: ''
   })
 
   const handleForm = async (e) => {
@@ -20,9 +22,34 @@ function Editors() {
     await setForm({...form, [name]: value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(form)
 
+    // const { email, senha, nome, telefone } = form;
+    // if (!email || !senha || !nome || !telefone ) {
+    //   setForm({...form, error: "Por favor, preencha os dados corretamente!" });
+    //   return false
+    // } else {
+    //   try {
+    //       await apiRegister({ ...form })
+    //       .then(r => {
+    //         if (r.statusText.toLowerCase() === 'ok') {
+              
+    //         }
+    //       })
+    //       .catch(function(err){
+    //         if(err.response.status === 500){
+    //           setForm({...form, error:err.response.data.message})
+    //         }
+    //       })
+    //     } catch (err) {
+    //       setForm({...form,
+    //       error:
+    //           "Houve um problema com o login, verifique suas credenciais. T.T"
+    //       });
+    //   }
+    // }
   }
 
   return (
@@ -34,20 +61,20 @@ function Editors() {
           <Input type="email" name="email" id="exampleEmail" value={form.email} onChange={handleForm} placeholder="" />
         </FormGroup>
         <FormGroup>
-          <Label>Seu nome completo: </Label>
+          <Label>Nome do responsável de contato: </Label>
           <Input type="text" name="name" value={form.name} onChange={handleForm} placeholder="" />
         </FormGroup>
         <FormGroup>
-          <Label>Nome da empresa: </Label>
+          <Label>Nome da Editora: </Label>
           <Input type="text" name="nome_empresa" value={form.nome_empresa} onChange={handleForm} placeholder="" />
         </FormGroup>
         <FormGroup>
-          <Label>CPF/CNPJ: </Label>
-          <Input type="text" name="cpf_cnpj" value={form.cpf_cnpj} onChange={handleForm} placeholder="" />
+          <Label>Telefone do contato: </Label>
+          <Input type="text" name="telefone" value={form.telefone} onChange={handleForm} placeholder="(00) 0 0000-0000" />
         </FormGroup>
         <FormGroup>
-          <Label>Número de telefone: </Label>
-          <Input type="text" name="telefone" value={form.telefone} onChange={handleForm} placeholder="(00) 0 0000-0000" />
+          <Label>Senha: </Label>
+          <Input type="password" autoComplete="new-password" name="senha" value={form.senha} onChange={handleForm} placeholder="" />
         </FormGroup>
         <Button>Criar conta</Button>
       </Form>
