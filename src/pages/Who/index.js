@@ -90,7 +90,7 @@ function Who(props) {
           <CardFooter style={{height: '80px', backgroundColor: '#fff'}} className="justify-content-center align-items-center d-flex p-0">
             <Value color="#FFC107">Grátis</Value>
           </CardFooter>
-           <Next variant="contained" bg="#FFC107" onClick={() => window.open('https://app.lamusic.com.br/pro')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
+           <Next variant="contained" bg="#FFC107" onClick={() => window.open('https://app.lamusic.com.br/pro#register')} className="d-block w-100 py-3 text-capitalize">Próxima</Next>
            {/* <Next variant="contained" bg="#FFC107" onClick={() => next('editors', 'editoras')} className="d-block w-100 py-3 text-capitalize">Próxima</Next> */}
         </Card>
     </div>
