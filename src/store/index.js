@@ -1,10 +1,10 @@
 import { createStore } from 'redux'
-
+console.log(window.location.pathname)
 const INITIAL_STATE = {
   form: false,
   data: { 
-    who: '',
-    papel: '',
+    who: window.location.pathname === '/artista' ? 'artist' : '',
+    papel: window.location.pathname === '/artista' ? 'artista' : '',
     nome: "", 
     nome_produtor: "",
     email: "", 
