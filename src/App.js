@@ -11,17 +11,19 @@ import Button, { Link } from './components/Button'
 import Who from './pages/Who'
 import Editor from './pages/Form/Editors'
 import axios from 'axios'
+import ModalDados from 'components/ModalConfirm'
 
 function App() {
   const dispatch = useDispatch()
   const store = useSelector(state => state)
   
   const [ step, setStep ] = useState(0)
-  const [ button ] = useState([{context: 'Próximo', color: '#0FBB00'},{context:'Finalizar', color: '#0FBB00'}, {context: 'Ir para site LA Music', color: '#3F3F3F'}])
-  const [ disabled, setDisabled ] = useState(false);
+  const [ button ] = useState([{context: 'Próximo', color: '#0FBB00'},{context:'Confirmar Dados', color: '#0FBB00'}, {context: 'Ir para site LA Music', color: '#3F3F3F'}])
+  const [ disabled, setDisabled ] = useState(false)
   const [ form, setForm ] = useState(store.data)
   const [ show, setShow ] = useState()
   const [ resp, setResp ] = useState('')
+  const [ modalConfirm, setModalConfirm ] = useState(false)
   const [ pathname ] = useState(window.location.pathname)
 
   useEffect(() => {
@@ -37,7 +39,10 @@ function App() {
   
   async function submit(){
     const { data } = store
+    
     setDisabled(true)
+    setModalConfirm(false)
+
     try {
       axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
         ...data
@@ -102,7 +107,8 @@ function App() {
                       disabled={form.requiredStep2}
                       colorbutton={button[step].color}
                       className="w-100"
-                      onClick={e => submit()} 
+                      onClick={e => setModalConfirm(!modalConfirm)} 
+                      // onClick={e => submit()} 
                       text={button[step].context}
                       endIcon={step === 0 && <ArrowRightAlt />} />
                   </div>
@@ -131,7 +137,7 @@ function App() {
               <div className="sessaoNum d-none d-sm-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center ">
                 <span onClick={() => step > 0 && setStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
                 <span onClick={() => step > 1 && setStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
-                <span onClick={() => step >=2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
+                <span onClick={() => step >= 2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
               </div>
             )}
           </div>
@@ -144,6 +150,7 @@ function App() {
               </Modal.Footer>
             </Modal>
         </div>
+        <ModalDados modalConfirm={modalConfirm} submit={() => submit()} setModalConfirm={() => setModalConfirm(!modalConfirm)} />
         {disabled && (
           <div className="d-block" style={{position: 'fixed', height: '100%', width: '100%', top: 0, padding: '50vh 0 0 50vw', backgroundColor: '#0c0c0ca8'}}>
             <CircularProgress disableShrink/>
