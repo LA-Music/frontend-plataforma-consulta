@@ -12,6 +12,7 @@ import Who from './pages/Who'
 import Editor from './pages/Form/Editors'
 import axios from 'axios'
 import ModalDados from 'components/ModalConfirm'
+import ModalContact from 'components/ModalContact'
 
 function App() {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function App() {
   const [ disabled, setDisabled ] = useState(false)
   const [ form, setForm ] = useState(store.data)
   const [ show, setShow ] = useState()
+  const [ linkContact, setLinkContact ]  = useState(false)
   const [ resp, setResp ] = useState('')
   const [ modalConfirm, setModalConfirm ] = useState(false)
   const [ pathname ] = useState(window.location.pathname)
@@ -36,7 +38,10 @@ function App() {
   const handleClose = () => {
     setShow(false)
   };
-  
+  const showContact = () => {
+    setLinkContact(true)
+    setShow(false)
+  }
   async function submit(){
     const { data } = store
     
@@ -54,13 +59,13 @@ function App() {
       )
       .catch(function(err){
         if(err.response.status === 500 || err.response.status === 400 ){
-          setResp(err.response.data.message)
+          setResp(`${err.response.data.message} `)
           setShow(true)
           setDisabled(false);
         }
       })
     } catch(error) {
-        console.error(error.response)
+      console.error(error.response)
         setDisabled(false);
     }
   }
@@ -142,13 +147,20 @@ function App() {
             )}
           </div>
             <Modal show={show} onHide={handleClose}>
-              <Modal.Body>{resp}</Modal.Body>
+              <Modal.Body>
+                {resp}
+                <div>
+                  <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}><b>Entrar em contato</b></span>
+                </div>
+              </Modal.Body>
               <Modal.Footer className="d-flex justify-content-center">
                 <button className="buttonModal" onClick={handleClose}>
                   Fechar
                 </button>
               </Modal.Footer>
             </Modal>
+            <ModalContact showContact={linkContact} setShowContact={() => setLinkContact(!linkContact)} />
+
         </div>
         <ModalDados modalConfirm={modalConfirm} submit={() => submit()} setModalConfirm={() => setModalConfirm(!modalConfirm)} />
         {disabled && (
