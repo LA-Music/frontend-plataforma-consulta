@@ -50,6 +50,8 @@ export function Step (props) {
 }
 
 export function Step2 (props) {
+
+  const [ nomeArtistico, setNomeArtistico ] = useState()
   const [ sociais, setSociais ] = useState()
   const [ musicas, setMusicas ] = useState()
   const [ associacao ] = useState(['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado'])
@@ -73,6 +75,12 @@ export function Step2 (props) {
         dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: form.redes_sociais}})
   }
 
+  function removeArtista(e){
+    let index = form.nome_artistico.indexOf(`${e}`);
+        index !== -1 && form.nome_artistico.splice(index,1);
+        dispatch({type: 'ADD_FORM', payload: {...form, nome_artistico: form.nome_artistico}})
+  }
+
   return (
     <Form>
       {form.who === 'producer' && (
@@ -88,10 +96,32 @@ export function Step2 (props) {
           </Form.Group>
         </>
       )}
-      <Form.Group>
+      <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Nome Artístico, Banda ou Coletivo:</Form.Label>
-        <Input type="text" value={form.nome_artistico} onChange={e => dispatch({type: 'ADD_FORM', payload: { ...form, nome_artistico: e.target.value }})} placeholder="Nome da banda ou artista" />
-      </Form.Group>
+          <InputButtom
+            value={nomeArtistico}
+            onChange={e => setNomeArtistico(e.target.value)}
+            placeholder="Nome da banda ou artista"
+            id="filled-adornment-password"
+            endAdornment={
+              <InputAdornment position="end" >
+                <IconButton
+                  aria-label="toggle password visibility"
+                  edge="end"
+                  onClick={ () => { 
+                    nomeArtistico && dispatch({type: 'ADD_FORM', payload: {...form, nome_artistico: [...form.nome_artistico, nomeArtistico]}}) 
+                    nomeArtistico && setNomeArtistico('')
+                  }} 
+                >
+                  <img src={AddCircle} alt="add" />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <div className="w-100 d-flex row mx-auto">
+            {form.nome_artistico.map( (r, key) => (<TagLabel className="my-3 mr-3" key={key}>{r}<CloseTag onClick={e => removeArtista(r)} title="Remover">x</CloseTag></TagLabel>))}
+          </div>
+        </FormControl>
       <Form.Group>
         <Form.Label className="text-white">É vinculado a alguma associação do ECAD(Abramus, UBC, etc)?</Form.Label>
         <RadioGroup name="associado" value={form.associacao} onChange={e => dispatch({type: 'ADD_FORM', payload: {...form, associacao: e.target.value}})} >
@@ -112,7 +142,10 @@ export function Step2 (props) {
                 <IconButton
                   aria-label="toggle password visibility"
                   edge="end"
-                  onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) } 
+                  onClick={ () => {
+                    sociais && dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) 
+                    sociais && setSociais('')
+                  }} 
                 >
                   <img src={AddCircle} alt="add" />
                 </IconButton>
@@ -136,7 +169,10 @@ export function Step2 (props) {
               <IconButton
                 aria-label="toggle password visibility"
                 edge="end"
-                onClick={ () => dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) }
+                onClick={ () => {
+                  musicas && dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) 
+                  musicas && setMusicas('')
+                }}
               >
                 <img src={AddCircle} alt="add" />
               </IconButton>

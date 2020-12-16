@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     email: "", 
     cpf:"", 
     telefone: "", 
-    nome_artistico: "", 
+    nome_artistico: [], 
     associacao: "", 
     redes_sociais: [], 
     lista_musicas: [],
