@@ -51,12 +51,11 @@ export function Step (props) {
 
 export function Step2 (props) {
 
-  const [ nomeArtistico, setNomeArtistico ] = useState()
-  const [ sociais, setSociais ] = useState()
-  const [ musicas, setMusicas ] = useState()
+  
   const [ associacao ] = useState(['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado'])
 
   const form = useSelector(state => state.data);
+  const state_form = useSelector(state => state.state_form)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -99,8 +98,8 @@ export function Step2 (props) {
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Nome Artístico, Banda ou Coletivo:</Form.Label>
           <InputButtom
-            value={nomeArtistico}
-            onChange={e => setNomeArtistico(e.target.value)}
+            value={state_form.nome_artistico}
+            onChange={ e => dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, nome_artistico: e.target.value}})}
             placeholder="Nome da banda ou artista"
             id="filled-adornment-password"
             endAdornment={
@@ -109,8 +108,8 @@ export function Step2 (props) {
                   aria-label="toggle password visibility"
                   edge="end"
                   onClick={ () => { 
-                    nomeArtistico && dispatch({type: 'ADD_FORM', payload: {...form, nome_artistico: [...form.nome_artistico, nomeArtistico]}}) 
-                    nomeArtistico && setNomeArtistico('')
+                    state_form.nome_artistico && dispatch({type: 'ADD_FORM', payload: {...form, nome_artistico: [...form.nome_artistico, state_form.nome_artistico]}}) 
+                    state_form.nome_artistico && dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, nome_artistico:''}})
                   }} 
                 >
                   <img src={AddCircle} alt="add" />
@@ -133,8 +132,8 @@ export function Step2 (props) {
       <FormControl className="w-100 mb-3" variant="filled">
         <Form.Label className="text-white">Redes sociais</Form.Label>
           <InputButtom
-            value={sociais}
-            onChange={e => setSociais(e.target.value)}
+            value={state_form.redes_sociais}
+            onChange={ e => dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, redes_sociais: e.target.value}})}
             placeholder="@exemplo123_"
             id="filled-adornment-password"
             endAdornment={
@@ -143,8 +142,8 @@ export function Step2 (props) {
                   aria-label="toggle password visibility"
                   edge="end"
                   onClick={ () => {
-                    sociais && dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, sociais]}}) 
-                    sociais && setSociais('')
+                    state_form.redes_sociais && dispatch({type: 'ADD_FORM', payload: {...form, redes_sociais: [...form.redes_sociais, state_form.redes_sociais]}}) 
+                    state_form.redes_sociais && dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, redes_sociais: ''}})
                   }} 
                 >
                   <img src={AddCircle} alt="add" />
@@ -160,8 +159,8 @@ export function Step2 (props) {
         <Form.Label className="text-white">Lista de Músicas</Form.Label>
         <Form.Text className="text-white mb-3">Inserir nome das músicas e links para identificação (youtube, spotify, deezer, etc) Ex.: "Nome da Música" - [inserir link do youtube]</Form.Text>
         <InputButtom
-          value={musicas}
-          onChange={ async e => setMusicas(e.target.value)}
+          value={state_form.lista_musicas}
+          onChange={ e => dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, lista_musicas: e.target.value}})}
           placeholder="Nome da música"
           id="filled-adornment-password"
           endAdornment={
@@ -170,8 +169,8 @@ export function Step2 (props) {
                 aria-label="toggle password visibility"
                 edge="end"
                 onClick={ () => {
-                  musicas && dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, musicas]}}) 
-                  musicas && setMusicas('')
+                  state_form.lista_musicas && dispatch({type: 'ADD_FORM', payload: {...form, lista_musicas: [...form.lista_musicas, state_form.lista_musicas]}}) 
+                  state_form.lista_musicas && dispatch({type: 'ADD_STATE_FORM', payload: {...state_form, lista_musicas: ''}})
                 }}
               >
                 <img src={AddCircle} alt="add" />

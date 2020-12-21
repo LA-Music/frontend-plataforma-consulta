@@ -41,7 +41,7 @@ const Index = ({modalConfirm, setModalConfirm, submit}) => {
                 }
                 <div>
                     <h5>Nome Artistico, Banda ou Coletivo:</h5>
-                    <p>{state.data.nome_artistico.join(', ')}</p>
+                    <p>{`${state.data.nome_artistico.join(', ')}`}, {state.state_form.nome_artistico}</p>
                 </div>
                 <div>
                     <h5>É vinculado a alguma associação do ECAD(Abramus, UBC, etc)?</h5>
@@ -49,11 +49,11 @@ const Index = ({modalConfirm, setModalConfirm, submit}) => {
                 </div>
                 <div>
                     <h5>Redes sociais</h5>
-                    <p>{state.data.redes_sociais.join(', ')}</p>
+                    <p>{state.data.redes_sociais.join(', ')}, {state.state_form.redes_sociais}</p>
                 </div>
                 <div>
                     <h5>Lista de Músicas</h5>
-                    <p>{state.data.lista_musicas.join(', ')}</p>
+                    <p>{state.data.lista_musicas.join(', ')}, { state.state_form.lista_musicas}</p>
                 </div>
             </Box>
         </ModalBody>

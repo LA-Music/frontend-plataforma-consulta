@@ -42,15 +42,55 @@ function App() {
     setLinkContact(true)
     setShow(false)
   }
+
+  function checkArtista(state, nomeArtistico) {
+
+    let nome_artistico = state.nome_artistico
+  
+    let filter =  state.nome_artistico.filter( name => name.indexOf(nomeArtistico) !== -1)
+  
+        filter.length === 0 && nome_artistico.push(nomeArtistico)
+  
+    return nome_artistico
+  }
+
+  function checkMusic(state, musicas) {
+
+    let lista_musicas = state.lista_musicas
+  
+    let filter = state.lista_musicas.filter( name => name.indexOf(musicas) !== -1)
+  
+        filter.length === 0 && lista_musicas.push(musicas)
+  
+     return lista_musicas
+  }
+  
+  function checkRedeSocial(state, sociais) {
+  
+    let redes_sociais = state.redes_sociais
+  
+    let filter = state.redes_sociais.filter( name => name.indexOf(sociais) !== -1)
+  
+        filter.length === 0 && redes_sociais.push(sociais)
+  
+     return redes_sociais
+  }
+
   async function submit(){
-    const { data } = store
+    const { data, state_form } = store
+    let payload = data
     
+    payload.nome_artistico = checkArtista(payload, state_form.nome_artistico) 
+    payload.redes_sociais = checkRedeSocial(payload, state_form.redes_sociais) 
+    payload.lista_musicas = checkMusic(payload, state_form.lista_musicas) 
+
     setDisabled(true)
     setModalConfirm(false)
 
+    
     try {
       axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-        ...data
+        ...payload
       })
       .then( res => {
           res.data.msg === 'ok' && setStep(step + 1);
@@ -146,20 +186,20 @@ function App() {
               </div>
             )}
           </div>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Body>
-                {resp}
-                <div>
-                  <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}><b>Entrar em contato</b></span>
-                </div>
-              </Modal.Body>
-              <Modal.Footer className="d-flex justify-content-center">
-                <button className="buttonModal" onClick={handleClose}>
-                  Fechar
-                </button>
-              </Modal.Footer>
-            </Modal>
-            <ModalContact showContact={linkContact} setShowContact={() => setLinkContact(!linkContact)} />
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Body>
+              {resp}
+              <div>
+                <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}><b>Entrar em contato</b></span>
+              </div>
+            </Modal.Body>
+            <Modal.Footer className="d-flex justify-content-center">
+              <button className="buttonModal" onClick={handleClose}>
+                Fechar
+              </button>
+            </Modal.Footer>
+          </Modal>
+          <ModalContact showContact={linkContact} setShowContact={() => setLinkContact(!linkContact)} />
 
         </div>
         <ModalDados modalConfirm={modalConfirm} submit={() => submit()} setModalConfirm={() => setModalConfirm(!modalConfirm)} />
