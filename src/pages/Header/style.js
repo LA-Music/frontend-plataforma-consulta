@@ -110,6 +110,12 @@ export const NavBar = styled.div`
       &:hover {
         ul {
           display: flex;
+          li {
+         
+            a {
+              color: var(--primary);
+            }
+          }
         }
       }
     }
