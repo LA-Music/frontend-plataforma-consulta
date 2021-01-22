@@ -101,6 +101,9 @@ export const NavBar = styled.div`
 
         li {
           margin: 0.5rem 0 !important;
+          a {
+            color: var(--primary);
+          }
         }
       }
 
@@ -142,6 +145,7 @@ export const MenuMobile = styled.ul`
     
     li {
       margin: 0 1.5rem;
+      text-align: center;
 
       a {
         cursor: pointer;
@@ -153,6 +157,32 @@ export const MenuMobile = styled.ul`
         &:hover {
           color: var(--white);
           opacity: 0.8;
+        }
+      }
+
+      ul {
+        display: none;
+        list-style: none;
+
+        width: 300px; 
+      
+        border-radius: 4px;
+
+        li {
+          &:nth-child(n+1) {
+            padding: 0.5rem 0 !important;
+          }
+
+          a {
+            color: var(--white);
+          }
+
+        }
+      }
+
+      &:hover {
+        ul {
+          display: flex;
         }
       }
     }

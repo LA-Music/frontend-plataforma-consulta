@@ -38,7 +38,7 @@ function Index(props) {
                 <ul className="flex-column m-0 p-0">
                   {list.submenu.map( ls => 
                     <li className="m-0 p-0">
-                      <a style={{color: 'var(--primary)'}} href={ls.url}>{ls.label}</a>
+                      <a href={ls.url}>{ls.label}</a>
                     </li>
                   )}
                 </ul>
@@ -60,7 +60,7 @@ function Index(props) {
               <ul className="flex-column m-0 p-0">
                 {list.submenu.map( ls => 
                   <li className="m-0 p-0">
-                    <a style={{color: 'var(--primary)'}} href={ls.url}>{ls.label}</a>
+                    <a href={ls.url}>{ls.label}</a>
                   </li>
                 )}
               </ul>
