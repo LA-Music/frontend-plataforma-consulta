@@ -16,7 +16,7 @@ function Index(props) {
     { label: 'Quem somos', url: 'https://www.lamusic.com.br/quem-somos/' },
     { label: 'Soluções'  , url: '#' , 
       submenu: [
-        {label: 'Liberação de Créditos Retidos', url: 'https://www.lamusic.com.br/blog/'},
+        {label: 'Liberação de Créditos Retidos', url: 'https://www.lamusic.com.br/creditos-retidos/'},
         {label: 'Registro de Marcas Artísticas', url: 'https://www.lamusic.com.br/registro-de-marca/'},
         {label: 'Contratos e Consultoria Jurídica', url: 'https://www.lamusic.com.br/contratos-e-consultoria/'},
         {label: 'Cadastro de Músicas no ECAD', url: 'https://www.lamusic.com.br/direitos-autorais/'},
