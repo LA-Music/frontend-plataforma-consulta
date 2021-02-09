@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import BgHeader from 'assets/img/bg-header.svg'
 import Logo from 'assets/img/logo.svg'
 import Hamburguer from 'assets/img/hamburguer.svg'
 import CloseMenu from 'assets/img/closeMenu.svg'
@@ -68,9 +67,9 @@ function Index(props) {
           </li>
         )}
       </MenuMobile>
-      <Header className='pb-5' background={BgHeader}>
-        <div className="px-sm-5">
-          <img className="img-fluid mb-5" src={Logo} alt="Logo" />
+
+      <Header className='pb-5'>
+        <div>
           <h1 className="mb-3">Consulta de Créditos Retidos</h1>
           <p>Formulário para identificação do artista e de seu catálogo, verificação de sua situação perante o ECAD e pesquisa de créditos retidos</p>
         </div>

@@ -14,6 +14,9 @@ import axios from 'axios'
 import ModalDados from 'components/ModalConfirm'
 import ModalContact from 'components/ModalContact'
 
+
+import { Container, Body, Steps } from './styles'
+
 function App() {
   const dispatch = useDispatch()
   const store = useSelector(state => state)
@@ -111,29 +114,28 @@ function App() {
   }
 
   return (
-    <div className="App" style={{backgroundColor: '#262626', minHeight: '100vh'}}>
+    <Container className="App">
+
       <Header />
         <div className="my-5 d-flex justify-content-center flex-column align-items-center flex-sm-row" style={{backgroundColor: '#262626', minHeight: '42vh', marginRight: '20px', marginLeft: '20px'}}>
-          <div className="order-3 order-sm-1 d-flex justify-content-center align-items-center"></div>
-          <div className="sessao-meio d-flex flex-column flex-sm-row align-items-center justify-content-center order-2 order-sm-2">
+          
+          <Body className="d-flex align-items-center justify-content-center order-2 order-sm-2">
             {store.data.who !== 'editors' && store.form && (
-              <div className="sessaoNum d-flex d-sm-none ml-sm-5 mb-5 flex-row flex-sm-column justify-content-between justify-content-sm-center">
+              <Steps className="d-flex d-lg-none ml-sm-5 mb-5 ">
                 <span onClick={() => step > 0 && setStep(0)} className={`num-Steps mb-0 ${step === 0 ? 'active' : ''}`}>1</span>
                 <span onClick={() => step > 1 && setStep(1)} className={`num-Steps mb-0 mx-5 ${step === 1 ? 'active' : ''}`}>2</span>
                 <span onClick={() => step === 2 && setStep(2)} className={`num-Steps mb-0 ${step === 2 ? 'active' : ''}`}>3</span>
-              </div>
+              </Steps>
             )}
-            {store.data.who === 'editors' ? (
-              <div className="sessao-meio order-2 order-sm-2 d-flex justify-content-center">
-                <Editor />
-              </div>
-            ) : (!store.form && pathname !== '/artista' ? (
+            
+            {!store.form && pathname !== '/artista' ? (
               <Who {...store} />
-              ) : 
+            ) : 
               <>
+                
                 {step === 0 && (
-                  <div id="step-1" className="step-1 w-100" active={step === 1 ? true : undefined}>
-                    <h2 className="text-white AvenirBold">{store.data.who === 'producer' ? 'Dados do Solicitante' : 'Dados Pessoais'}</h2>
+                  <div id="step-1" className="step-1 step" active={step === 1 ? true : undefined}>
+                    <h2 className="AvenirBold">{store.data.who === 'producer' ? 'Dados do Solicitante' : 'Dados Pessoais'}</h2>
                     <Step callStep={ e => setForm(e)} />
                     <Button 
                       disabled={form.requiredStep1}
@@ -144,22 +146,23 @@ function App() {
                       endIcon={step === 0 && <ArrowRightAlt />} />
                   </div>
                 )}
+                
                 {step === 1 && (
-                  <div id="step-2" className="step-2 w-100" active={step === 2 ? true : undefined}>
-                    {store.data.who === 'producer' && <h2 className="text-white AvenirBold">Dados do Artista</h2>}
+                  <div id="step-2" className="step-2 step" active={step === 2 ? true : undefined}>
+                    {store.data.who === 'producer' && <h2 className="AvenirBold">Dados do Artista</h2>}
                     <Step2 callStep={e => setForm(e)} />
                     <Button 
                       disabled={form.requiredStep2}
                       colorbutton={button[step].color}
                       className="w-100"
                       onClick={e => setModalConfirm(!modalConfirm)} 
-                      // onClick={e => submit()} 
                       text={button[step].context}
                       endIcon={step === 0 && <ArrowRightAlt />} />
                   </div>
                 )}
+
                 {step === 2 && (
-                  <div id="step-3" className="step-3 w-100 text-center" active={step === 3 ? true : undefined}>
+                  <div id="step-3" className="step-3 step text-center" active={step === 3 ? true : undefined}>
                     <Step3 />
                     {store.data.who === 'producer' ? (
                       <Link 
@@ -177,15 +180,16 @@ function App() {
                   </div>
                 )}
               </>
-            )}
-            {store.data.who !== 'editors' && store.form && (
-              <div className="sessaoNum d-none d-sm-flex ml-sm-5 flex-row flex-sm-column justify-content-between justify-content-sm-center ">
-                <span onClick={() => step > 0 && setStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
-                <span onClick={() => step > 1 && setStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
-                <span onClick={() => step >= 2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
-              </div>
-            )}
-          </div>
+            }
+          </Body>
+          {store.form && (
+            <Steps className="d-none d-lg-flex ml-sm-5 flex-row flex-sm-column  ">
+              <span onClick={() => step > 0 && setStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
+              <span onClick={() => step > 1 && setStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
+              <span onClick={() => step >= 2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
+            </Steps>
+          )}
+
           <Modal show={show} onHide={handleClose}>
             <Modal.Body>
               {resp}
@@ -209,7 +213,7 @@ function App() {
           </div>
         )}
       <Footer /> 
-    </div>
+    </Container>
   );
 }
 

@@ -54,16 +54,12 @@
   box-sizing: border-box;
   margin-bottom: 2rem;
 }
+
 .active{
   border: 1px solid #ffffff !important;
   color: #ffffff !important;
 }
-.sessao-meio{
-  width: 70vw;
-}
-/* .sessaoNum{
-   width: 30vw; 
-} */
+
 
 .modal-content{
   background-color: #dc4848 !important;
@@ -111,27 +107,6 @@
   color: #EAB41F;
 }
 
-@media (max-width: 990px) { 
-  .sessao-meio{
-
-    max-width: 980px !important;
-    margin: 0 10px;
-  }
-  /* .sessaoNum{
-    width: 50vw;
-  } */
-}
-
-@media (max-width: 1900px) { 
-  .sessao-meio{
-    width: 95vw;
-    max-width: 1180px;
-    margin: 0 10px;
-  }
-  /* .sessaoNum{
-    width: 50vw;
-  } */
-}
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -153,6 +128,14 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.step {
+  background-color: #fff;
+  padding: 43px 33px;
+
+  width: 587px;
+  max-width: 100%;
 }
 
 @keyframes App-logo-spin {

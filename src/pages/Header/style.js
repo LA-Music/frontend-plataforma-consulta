@@ -2,39 +2,32 @@ import styled from 'styled-components'
 
 
 export const Header = styled.header`
-  background-image: url(${props => props.background});
-  background-color: #372210;
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: cover;
+
+  padding: 140px 1.5rem 0;
   
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding-top: 100px;
-  
-  font-size: calc(10px + 2vmin);
+ 
   color: white;
   text-align: center;
   
-  height: 500px;
 
   > div{
-    width: 70vw;
-    
-    @media (min-width: 360px){
-      width: 90vw;
-    }
+    width: 537px;
+    max-width: 100%;
     
     h1{
+      font-size: 30px;
       font-family: 'AvenirBold';
     }
   
     p{
       font-family: 'AvenirRegular-500';
-      margin: auto;
+      
+      font-size: 16px;
+      line-height: 19.2px
     }
   }
   

@@ -1,13 +1,47 @@
 import styled from 'styled-components';
+import { Card } from 'reactstrap';
 import { Button } from '@material-ui/core'
 
 
 export const Container = styled.div`
-  width: 100%;
+  max-width: 100%;
+`;
 
-  @media(max-width: 768px) {
-    width: 70%;
+export const Cards = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  align-items: flex-end;
+ 
+`;
+
+export const CardWho = styled(Card)`
+  width: 347px;
+  max-width: 100%;
+  margin: 0 16px 16px;
+
+  background-color: transparent;
+
+  > div {
+    background-color: #fff;
+
+    .card-body {
+      height: 300px;
+
+      .card-subtitle {
+        font-weight: bold;
+      }
+    }
+
+    .card-footer {
+      height: 80px;
+      background-color: #fff;
+    }
   }
+
+  border: none;
+  
 `;
 
 export const Budget = styled.div`
@@ -15,7 +49,6 @@ export const Budget = styled.div`
   width: 206px;
   height: 30px;
 
-  /* background: gray; */
   background: #FFC107;
   border-radius: 19px;
 
@@ -32,6 +65,12 @@ export const Budget = styled.div`
 export const Title = styled.h1`
   color: #fff;
   font-family: 'AvenirBold';
+  font-size: 26px;
+
+  margin-bottom: 28px;
+
+  width: 1073px;
+  max-width:  100%;
 `;
 
 export const ButtonRadio = styled.div`
@@ -40,6 +79,7 @@ export const ButtonRadio = styled.div`
   border: 1px solid ${props => props.selected ? '#0FBB00' : '#949494'} ;
   font-family: ${props => props.selected ? 'AvenirBold' : 'AvenirRegular'};
   box-sizing: border-box;
+  
   border-radius: 4px;
 
   &:hover {

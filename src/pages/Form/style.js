@@ -1,33 +1,50 @@
 import styled from 'styled-components';
 import { Form, Modal } from 'react-bootstrap'
-import { FormControlLabel, FilledInput, Link } from '@material-ui/core'
+import { FormControl, FormControlLabel, FilledInput, Link } from '@material-ui/core'
 
 export const Label = styled(Form.Label)`
   font-family: 'AvenirRegular-600';
 `;
 
 export const Span = styled.span`
-  color: #A5A5A5;
+  color: #555555;
   font-family: 'AvenirRegular';
 `;
 
 export const Input = styled(Form.Control)`
-  background-color: #2C2C2C !important;
+  background-color: #fff !important;
   border: 1px solid #949494 !important;
   box-sizing: border-box;
+
   border-radius: 4px;
-  color: #A5A5A5 !important;
+  color: #555555 !important;
   height: 59px;
   box-shadow: none;
+  
   &:active{
     border-color: 1px solid #949494 !important;
   }`;
 
+export const FieldSet = styled(FormControl)`
+  width: 100%;
+
+  select { 
+    height: 59px;
+    padding: 0 1rem;
+
+    font-size: 16px;
+    color: #555555;
+    font-family: 'AvenirRegular'
+  }
+
+`;
+
 export const RadioInput = styled(FormControlLabel)`
   width: 100%;
-  color: #A5A5A5;
+  color: #555555;
+
   .MuiButtonBase-root{
-    color: #A5A5A5 !important;
+    color: #555555 !important;
   }
 `;
 
@@ -39,8 +56,8 @@ export const TextStep3 = styled.h2`
 
 export const TagLabel = styled.span`
   height: 30px;
-  color: #A5A5A5;
-  background: #2C2C2C;
+  color: #555555;
+  background: #fff;
   border-radius: 16px;
   padding: 1rem;
   display: flex;
@@ -50,14 +67,15 @@ export const TagLabel = styled.span`
 `;
 
 export const InputButtom = styled(FilledInput)`
-  background-color: #2C2C2C !important;
+  background-color: #fff !important;
   height: 59px;
   border: 1px solid #949494;
   border-radius: 4px;
+  
   input{
     height: 100%;
     font-family: 'AvenirRegular';
-    color: #A5A5A5;
+    color: #555555;
     padding: 0rem 1rem;
   }
 `;
