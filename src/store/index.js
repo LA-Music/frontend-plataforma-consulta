@@ -32,6 +32,7 @@ const INITIAL_STATE = {
 function form(state = INITIAL_STATE, action){
   switch (action.type) {
     case 'ADD_FORM':{
+      console.log(action.payload)
       const { who } = state.data
       let requiredStep1 = who === 'artist' ? action.payload.email !== '' && action.payload.nome !== '' ? false : true : action.payload.email !== '' && action.payload.nome_produtor !== ''  ? false : true
       let requiredStep2 = (action.payload.termos && action.payload.nome !== '') ? false : true

@@ -12,7 +12,8 @@ export const Header = styled.header`
  
   color: white;
   text-align: center;
-  
+ 
+  background-color: var(--primary);
 
   > div{
     width: 537px;
@@ -37,7 +38,7 @@ export const Header = styled.header`
 export const NavBar = styled.div`
   position: fixed;
   z-index: 2;
-  background: var(--secondary);
+  background: var(--primary);
 
   padding: 0 3rem;
 
@@ -132,11 +133,11 @@ export const MenuMobile = styled.ul`
     align-items: center;
     
     display: ${props => props.toggle ? 'flex' : 'none'};
-    background: var(--secondary);
+    background: var(--primary);
     
     list-style: none;
     padding-top: 100px;
-    z-index: 3;
+    /* z-index: 3; */
 
     @media(min-width: 1000px) {
       display: none;

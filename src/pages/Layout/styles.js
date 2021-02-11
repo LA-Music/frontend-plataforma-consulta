@@ -2,7 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background-color: #262626; 
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column-reverse;
+
+  padding: 0 20px 190px;
+
+  @media(min-width: 1000px) {
+    flex-direction: row;
+  }
+
 `;
 
 
@@ -28,7 +39,8 @@ export const Body = styled.div`
 `;
 
 export const Steps = styled.div`
-    display: flex;
+
+    display: ${props => props.active ? 'flex' : 'none' };
     justify-content: space-between;
 
     @media(min-width: 1000px) {
@@ -36,4 +48,15 @@ export const Steps = styled.div`
         justify-content: center;
     }
   
+`;
+
+export const ListFields = styled.div`
+  background: var(--white);
+  border-radius: 6px;
+
+  width: 587px;
+  max-width: 100%;
+  margin: auto 20px;
+
+  padding: 50px;
 `;
