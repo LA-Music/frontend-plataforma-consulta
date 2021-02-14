@@ -7,17 +7,17 @@ export const Label = styled(Form.Label)`
 `;
 
 export const Span = styled.span`
-  color: #555555;
+  color: var(--gray-2);
   font-family: 'AvenirRegular';
 `;
 
 export const Input = styled(Form.Control)`
-  background-color: #fff !important;
+  background-color: var(--white) !important;
   border: 1px solid #949494 !important;
   box-sizing: border-box;
 
   border-radius: 4px;
-  color: #555555 !important;
+  color: var(--gray-2) !important;
   height: 59px;
   box-shadow: none;
   
@@ -33,18 +33,17 @@ export const FieldSet = styled(FormControl)`
     padding: 0 1rem;
 
     font-size: 16px;
-    color: #555555;
+    color: var(--gray-2);
     font-family: 'AvenirRegular'
   }
-
 `;
 
 export const RadioInput = styled(FormControlLabel)`
   width: 100%;
-  color: #555555;
+  color: var(--gray-2);
 
   .MuiButtonBase-root{
-    color: #555555 !important;
+    color: var(--gray-2) !important;
   }
 `;
 
@@ -56,8 +55,8 @@ export const TextStep3 = styled.h2`
 
 export const TagLabel = styled.span`
   height: 30px;
-  color: #555555;
-  background: #fff;
+  color: var(--white);
+  background: var(--gray-2);
   border-radius: 16px;
   padding: 1rem;
   display: flex;
@@ -67,7 +66,7 @@ export const TagLabel = styled.span`
 `;
 
 export const InputButtom = styled(FilledInput)`
-  background-color: #fff !important;
+  background-color: var(--white) !important;
   height: 59px;
   border: 1px solid #949494;
   border-radius: 4px;
@@ -75,14 +74,18 @@ export const InputButtom = styled(FilledInput)`
   input{
     height: 100%;
     font-family: 'AvenirRegular';
-    color: #555555;
+    color: var(--gray-2);
     padding: 0rem 1rem;
+  }
+
+  &::before {
+    border-bottom: none !important;
   }
 `;
 
 export const CloseTag = styled.span`
   cursor: pointer;
-  color: #ffffff;
+  color: var(--white);
   margin-left: 1rem;
 `;
 
@@ -90,12 +93,15 @@ export const ModalFinally = styled(Modal)`
   h3{
     font-size: 1.37rem;
   }
+
   .modal-content{
     width: 35rem !important;
+
     @media(max-width: 1024px){
       width: 100% !important;
     }
-    background-color: #fff !important;
+
+    background-color: var(--white) !important;
   }
 
   .modal-content .modal-header{
@@ -103,27 +109,27 @@ export const ModalFinally = styled(Modal)`
   }
 
   .modal-content .modal-title{
-    color: #595959;
+    color: var(--gray-3);
     border-bottom: none;
   }
 
   .modal-content .modal-body{
     border-top: none;
-    color: #595959;
+    color: var(--gray-3);
     text-align: left;
   }
 `;
 
 export const LinkNavegate = styled(Link)`
-  color: ${props => props.type === 'termos' ? '#9C9C9C' : '#0FBB00' } !important;
+  color: ${props => props.type === 'termos' ? '#9C9C9C' : 'var(--green)' } !important;
   font-weight: 600 !important;
   text-decoration:underline !important;
   font-size: 1rem !important;
 `;
 
 export const ButtonNavigate = styled(Link)`
-  background-color: #0FBB00;
-  color: #fff !important;
+  background-color: var(--green);
+  color: var(--white) !important;
   text-align: center;
   
   padding: 1rem 0 1rem 0;

@@ -8,12 +8,11 @@ import Footer from 'pages/Footer'
 function App() {
   return (
     <>
-    
-    <Header />
-    <Layout />
-    <Footer />
-    
-    <GlobalStyles />
+      <Header />
+      <Layout />
+      <Footer />
+      
+      <GlobalStyles />
     </>
   );
 }

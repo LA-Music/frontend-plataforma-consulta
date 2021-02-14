@@ -50,7 +50,7 @@ export const Steps = styled.div`
   
 `;
 
-export const ListFields = styled.div`
+export const ListFields = styled.form`
   background: var(--white);
   border-radius: 6px;
 
