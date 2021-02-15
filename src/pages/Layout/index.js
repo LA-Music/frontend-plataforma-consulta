@@ -12,7 +12,7 @@ import ModalContact from 'components/ModalContact'
 
 
 // import { Step, Step2, Step3 } from '../Form'
-import { Fields } from '../Form/inputs'
+import { Fields, Step3 } from '../Form/inputs'
 
 import Who from '../Who'
 
@@ -28,22 +28,18 @@ function Index() {
   const store = useSelector(state => state)
   
   const [ step, setStep ] = useState(0)
-  const [ button ] = useState([{context: 'Próximo', color: '#0FBB00'},{context:'Confirmar Dados', color: '#0FBB00'}, {context: 'Ir para site LA Music', color: '#3F3F3F'}])
+  const [ qtdSteps, setQtdSteps ] = useState(0)
+
   const [ loading, setLoading ] = useState(false)
-  // const [ form, setForm ] = useState(store.data)
+
   const [ show, setShow ] = useState()
   const [ linkContact, setLinkContact ]  = useState(false)
   const [ resp, setResp ] = useState('')
   const [ modalConfirm, setModalConfirm ] = useState(false)
+  
   const [ pathname ] = useState(window.location.pathname)
 
-  useEffect(() => {
-    settings()
-      async function settings() {
-        await dispatch({type: 'SET_PATHNAME', payload: window.location.pathname })
-      }
-  },[]) //eslint-disable-line
-
+  
   const handleClose = () => {
     setShow(false)
   };
@@ -52,45 +48,7 @@ function Index() {
     setShow(false)
   }
 
-  async function submit(e){
-    e.preventDefault();
-    const { data, state_form } = store
-    
-    let payload = data
-
-    payload.nome_artistico = check.check(payload.nome_artistico, state_form.nome_artistico) 
-    payload.redes_sociais = check.check(payload.redes_sociais, state_form.redes_sociais) 
-    payload.lista_musicas = check.check(payload.lista_musicas, state_form.lista_musicas) 
-
-    console.log(payload)
-    setLoading(true)
-    setModalConfirm(false)
-
-    setStep(step + 1)
-    setLoading(false)
-    
-    // try {
-    //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-    //     ...payload
-    //   })
-    //   .then( res => {
-    //       res.data.msg === 'ok' && setStep(step + 1);
-    //       setLoading(false);
-    //     }
-    //   )
-    //   .catch(function(err){
-    //     if(err.response.status === 500 || err.response.status === 400 ){
-    //       setResp(`${err.response.data.message} `)
-    //       setShow(true)
-    //       setLoading(false);
-    //     }
-    //   })
-    // } catch(error) {
-    //   console.error(error.response)
-    //     setLoading(false);
-    // }
-  }
-
+ 
   function getValue(value) {
     dispatch(value)
   }
@@ -271,10 +229,65 @@ function Index() {
             }
           ]
         },
-        
       ]
     }
   ]
+
+  useEffect(() => {
+    settings()
+      async function settings() {
+        await dispatch({type: 'SET_PATHNAME', payload: window.location.pathname })
+      }
+
+      if (store.data.who !== '') {
+        let lengthSteps = papel.find(type => type.typePerson === store.data.who).steps.length
+        setQtdSteps(lengthSteps)
+      }
+
+  },[store.data.who]) //eslint-disable-line
+
+  async function submit(e){
+    e.preventDefault();
+    const { data, state_form } = store
+    
+    let payload = data
+
+    payload.nome_artistico = check.check(payload.nome_artistico, state_form.nome_artistico) 
+    payload.redes_sociais = check.check(payload.redes_sociais, state_form.redes_sociais) 
+    payload.lista_musicas = check.check(payload.lista_musicas, state_form.lista_musicas) 
+
+    let nextStep = step + 1
+    
+    setLoading(true)
+    setModalConfirm(false)
+
+    setStep(nextStep)
+    setLoading(false)
+
+    if (qtdSteps === nextStep) {
+      console.log('sucesso')
+      // try {
+      //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
+      //     ...payload
+      //   })
+      //   .then( res => {
+      //       res.data.msg === 'ok' && setStep(step + 1);
+      //       setLoading(false);
+      //     }
+      //   )
+      //   .catch(function(err){
+      //     if(err.response.status === 500 || err.response.status === 400 ){
+      //       setResp(`${err.response.data.message} `)
+      //       setShow(true)
+      //       setLoading(false);
+      //     }
+      //   })
+      // } catch(error) {
+      //   console.error(error.response)
+      //     setLoading(false);
+      // }
+    } 
+  }
 
   return (
     <Container className="App">
@@ -290,14 +303,19 @@ function Index() {
             </Steps>
       
             <ListFields onSubmit={submit}>
-              {papel
-                .filter( form => form.typePerson === store.data.who)
-                .map( ({steps}) => 
-                  steps[step].inputs.map(input => 
-                    Fields[input.id](input)
-                  )
-                )
+              {console.log(qtdSteps, step)}
+              {qtdSteps > step ? 
+                  papel
+                    .filter( form => form.typePerson === store.data.who)
+                    .map( ({steps}) => 
+                      steps[step].inputs.map(input => 
+                        Fields[input.id](input)
+                      )
+                    )
+                : 
+                <Step3 />
               }
+
             </ListFields>
           </>
         )

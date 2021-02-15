@@ -136,7 +136,7 @@ export const ButtonNavigate = styled(Link)`
   border-radius: 4px;
 
   &:hover{
-    background-color: #0fbb0094;
+    background-color: var(--green-dark);
     text-decoration: none !important;
   }
 `;
