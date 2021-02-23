@@ -281,37 +281,33 @@ export const Fields = {
   }
 }
 
-export function Step3 () {
-
-  const [ show, handleShow ] = useState(true)
+export function Step3 ({show, setShowSucess}) {
 
   return (
-    <>
-      <TextStep3 className=" text-center my-5">Em até 48 horas você receberá um e-mail indicando se existem créditos retidos para receber.</TextStep3>
-      <ModalFinally show={show} onHide={handleShow}>
-        <Modal.Header className="pb-0" closeButton>
-        </Modal.Header>
-        <Modal.Body className="px-5 mb-3">
-          <h3 className="mb-3">Relatório solicitado com sucesso!</h3>
-          <p>Você acaba de solicitar a consulta de créditos retidos no Ecad.</p>
-          <p><b>Entraremos em contato com a Associação para processar sua solicitação</b></p>
-          <p>Em até 2 (dois) dias úteis você receberá um e-mail indicando se existem créditos retidos para receber.</p>
-          
-          <div className="row d-flex justify-content-center flex-column px-5">
-            <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
-          
-            <div className="mt-3 d-flex justify-content-between flex-column flex-sm-row">
-              <LinkNavegate type="backSite" href="https://www.lamusic.com.br/">
-                Voltar para o site
-              </LinkNavegate>
-          
-              <LinkNavegate type="termos" href="https://www.lamusic.com.br/termos-de-uso/" target="_blank">
-                Ver termos de uso
-              </LinkNavegate>
-            </div>
+    <ModalFinally show={show} onHide={setShowSucess}>
+      <Modal.Header className="pb-0" closeButton>
+      </Modal.Header>
+      <Modal.Body className="px-5 mb-3">
+        <h3 className="mb-3">Relatório solicitado com sucesso!</h3>
+        <p>Você acaba de solicitar a consulta de Créditos Retidos junto ao ECAD. 
+          Estamos processando sua solicitação.</p>
+        <p><b>Em até 2 (dois) dias úteis você receberá um e-mail indicando se existem créditos retidos para receber.</b></p>
+        <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos <a href="https://www.lamusic.com.br/termos-de-uso" target="_blank">Termos de Uso</a> e <a href="https://www.lamusic.com.br/politica-de-privacidade" target="_blank">Políticas de Privacidade</a></p>
+        
+        <div className="row d-flex justify-content-center flex-column px-5">
+          <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>
+        
+          <div className="mt-3 d-flex justify-content-between flex-column flex-sm-row">
+            <LinkNavegate type="backSite" href="https://www.lamusic.com.br/">
+              Voltar para o site
+            </LinkNavegate>
+        
+            <LinkNavegate type="termos" href="https://www.lamusic.com.br/termos-de-uso/" target="_blank">
+              Ver termos de uso
+            </LinkNavegate>
           </div>
-        </Modal.Body>
-      </ModalFinally>
-    </>
-    );
+        </div>
+      </Modal.Body>
+    </ModalFinally>
+  );
 }

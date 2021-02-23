@@ -60,3 +60,11 @@ export const ListFields = styled.form`
 
   padding: 50px;
 `;
+
+export const TitleForm = styled.h2`
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 31.2px;
+
+  color: #303030;
+`;

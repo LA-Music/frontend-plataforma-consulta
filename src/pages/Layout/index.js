@@ -10,8 +10,6 @@ import { Modal } from 'react-bootstrap';
 import ModalDados from 'components/ModalConfirm'
 import ModalContact from 'components/ModalContact'
 
-
-// import { Step, Step2, Step3 } from '../Form'
 import { Fields, Step3 } from '../Form/inputs'
 
 import Who from '../Who'
@@ -21,7 +19,7 @@ import Load from 'components/Load'
 import { check, attrFields, remove } from './actions';
 
 
-import { Container, Body, Steps, ListFields } from './styles'
+import { Container, Body, Steps, ListFields, TitleForm } from './styles'
 
 function Index() {
   const dispatch = useDispatch()
@@ -32,7 +30,9 @@ function Index() {
 
   const [ loading, setLoading ] = useState(false)
 
+  const [ showSucess, setShowSucess ] = useState(false)
   const [ show, setShow ] = useState()
+  
   const [ linkContact, setLinkContact ]  = useState(false)
   const [ resp, setResp ] = useState('')
   const [ modalConfirm, setModalConfirm ] = useState(false)
@@ -57,6 +57,7 @@ function Index() {
     { typePerson: 'artist',
       steps: [
         {
+          title: "Dados do músico",
           inputs: [
             { 
               ...attrFields.nomeCompleto,
@@ -90,6 +91,7 @@ function Index() {
           ]
         },
         {
+          title:"Dados artísticos",
           inputs: [
             { 
               ...attrFields.nomeArtistico,
@@ -110,6 +112,7 @@ function Index() {
           ]
         },
         {
+          title: "Dados complementares",
           inputs: [
             { 
               ...attrFields.cpf, 
@@ -141,6 +144,7 @@ function Index() {
       typePerson: 'producer',
       steps: [
         {
+          title:"Dados do solicitante",
           inputs: [
             { 
               ...attrFields.nomeCompleto,
@@ -174,6 +178,7 @@ function Index() {
           ]
         },
         {
+          title: "Dados do Artista",
           inputs: [
             { 
               ...attrFields.nome,
@@ -204,6 +209,7 @@ function Index() {
           ]
         },
         {
+          title: "Dados complementares",
           inputs: [
             { 
               ...attrFields.cpf,
@@ -259,13 +265,14 @@ function Index() {
     let nextStep = step + 1
     
     setLoading(true)
-    setModalConfirm(false)
+    setModalConfirm(nextStep > 2)
 
     setStep(nextStep)
     setLoading(false)
 
     if (qtdSteps === nextStep) {
       console.log('sucesso')
+      setShowSucess(true)
       // try {
       //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
       //     ...payload
@@ -303,23 +310,29 @@ function Index() {
             </Steps>
       
             <ListFields onSubmit={submit}>
-              {console.log(qtdSteps, step)}
-              {qtdSteps > step ? 
-                  papel
-                    .filter( form => form.typePerson === store.data.who)
-                    .map( ({steps}) => 
-                      steps[step].inputs.map(input => 
-                        Fields[input.id](input)
-                      )
-                    )
-                : 
-                <Step3 />
+              
+              { papel
+                .filter( form => form.typePerson === store.data.who)
+                .map( ({steps}) =>
+                  <>
+                    {steps[step] && 
+                      <TitleForm>{steps[step].title}</TitleForm> 
+                    }
+                    
+                    {steps[step] && steps[step].inputs.map(input => 
+                      Fields[input.id](input)
+                    )}
+                  </>
+                ) 
               }
+
+             {showSucess && <Step3 show={showSucess} setShowSucess={() => setShowSucess(!showSucess)}/> }
 
             </ListFields>
           </>
         )
       }
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           {resp}
@@ -335,9 +348,14 @@ function Index() {
         </Modal.Footer>
       </Modal>
 
-      <ModalContact showContact={linkContact} setShowContact={() => setLinkContact(!linkContact)} />
+      <ModalContact 
+        showContact={linkContact} 
+        setShowContact={() => setLinkContact(!linkContact)} />
 
-      <ModalDados modalConfirm={modalConfirm} submit={() => submit()} setModalConfirm={() => setModalConfirm(!modalConfirm)} />
+      <ModalDados 
+        modalConfirm={modalConfirm} 
+        submit={() => submit()} 
+        setModalConfirm={() => setModalConfirm(!modalConfirm)} />
         
       {loading && <Load /> } 
       
