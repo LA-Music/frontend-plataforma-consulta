@@ -51,7 +51,7 @@ export const Fields = {
 
   cpf: function({name, required, value, placeholder, dispatch}) {
     const form = value
-    console.log(value)
+    
     return (
       <Form.Group>
         <Form.Label className="">CPF:</Form.Label>
@@ -280,6 +280,7 @@ export const Fields = {
     )
   }
 }
+
 
 export function Step3 ({show, setShowSucess}) {
 

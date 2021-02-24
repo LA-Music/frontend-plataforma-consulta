@@ -8,6 +8,7 @@ export default createGlobalStyle`
     
     --green: #0FBB00;
     --grenn-dar: #0fbb0094;
+    
     --gray:  rgba(255, 255, 255, 0.3);
     --gray-2: #555555;
     --gray-3: #595959;

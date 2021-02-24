@@ -32,6 +32,7 @@ function Index() {
 
   const [ showSucess, setShowSucess ] = useState(false)
   const [ show, setShow ] = useState()
+  const [ confirmedData, setConfirmerdData ] = useState(false)
   
   const [ linkContact, setLinkContact ]  = useState(false)
   const [ resp, setResp ] = useState('')
@@ -186,11 +187,6 @@ function Index() {
               dispatch: getValue
             },
             { 
-              ...attrFields.cpf,
-              value: store.data, 
-              dispatch: getValue 
-            },
-            { 
               ...attrFields.nomeArtistico,
               value: store, 
               dispatch: getValue
@@ -239,6 +235,12 @@ function Index() {
     }
   ]
 
+  function backStep(value) {
+    console.log(value)
+    setModalConfirm(false)
+    setStep(step-1)
+  }
+
   useEffect(() => {
     settings()
       async function settings() {
@@ -270,30 +272,32 @@ function Index() {
     setStep(nextStep)
     setLoading(false)
 
-    if (qtdSteps === nextStep) {
-      console.log('sucesso')
-      setShowSucess(true)
-      // try {
-      //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-      //     ...payload
-      //   })
-      //   .then( res => {
-      //       res.data.msg === 'ok' && setStep(step + 1);
-      //       setLoading(false);
-      //     }
-      //   )
-      //   .catch(function(err){
-      //     if(err.response.status === 500 || err.response.status === 400 ){
-      //       setResp(`${err.response.data.message} `)
-      //       setShow(true)
-      //       setLoading(false);
-      //     }
-      //   })
-      // } catch(error) {
-      //   console.error(error.response)
-      //     setLoading(false);
-      // }
-    } 
+      // setShowSucess(true)
+      if (confirmedData) {
+        console.log('sucesso')
+        
+        // try {
+        //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
+        //     ...payload
+        //   })
+        //   .then( res => {
+        //       res.data.msg === 'ok' && setStep(step + 1);
+        //       setLoading(false);
+        //     }
+        //   )
+        //   .catch(function(err){
+        //     if(err.response.status === 500 || err.response.status === 400 ){
+        //       setResp(`${err.response.data.message} `)
+        //       setShow(true)
+        //       setLoading(false);
+        //     }
+        //   })
+        // } catch(error) {
+        //   console.error(error.response)
+        //     setLoading(false);
+        // }
+
+      } 
   }
 
   return (
@@ -326,8 +330,19 @@ function Index() {
                 ) 
               }
 
-             {showSucess && <Step3 show={showSucess} setShowSucess={() => setShowSucess(!showSucess)}/> }
-
+            {showSucess && <Step3 show={showSucess} setShowSucess={() => setShowSucess(!showSucess)}/> }
+            
+            {modalConfirm && 
+              <ModalDados 
+                step={step}
+                setStep={backStep}
+                modalConfirm={modalConfirm} 
+                submit={(e) => {
+                  setConfirmerdData(true)
+                  submit(e)
+                } } 
+              />
+            }
             </ListFields>
           </>
         )
@@ -337,7 +352,9 @@ function Index() {
         <Modal.Body>
           {resp}
           <div>
-            <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}><b>Entrar em contato</b></span>
+            <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}>
+              <b>Entrar em contato</b>
+            </span>
           </div>
         </Modal.Body>
         
@@ -352,11 +369,6 @@ function Index() {
         showContact={linkContact} 
         setShowContact={() => setLinkContact(!linkContact)} />
 
-      <ModalDados 
-        modalConfirm={modalConfirm} 
-        submit={() => submit()} 
-        setModalConfirm={() => setModalConfirm(!modalConfirm)} />
-        
       {loading && <Load /> } 
       
     </Container>

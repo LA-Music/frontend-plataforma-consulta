@@ -2,52 +2,44 @@ import styled from 'styled-components';
 import { Modal } from  'reactstrap'
 
 
-export const Container = styled(Modal)`
+export const Container = styled.div`
 
+  .header {
+      h5 {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 31.2px;
+
+        color: #303030;
+      }
+
+      border: none;
+  }
   
-  .modal-content {
+  .content {
     background-color: #fff !important;
   
-    .modal-header {
-        h5 {
-            color: black;
-        }
-    }
 
-    .modal-body {
-        color: black;
-    }
-
-    .modal-footer {
+  }
+    .footer {
 
         display: flex;
         justify-content: center;
 
         button {
-            width: 184px;
-            border: none;
+          margin-right: 8px;
+          width: 50% !important;
 
-            &:hover {
-                opacity: 0.8;
-            }
-        }
-
-        .cancel {
-            background-color: transparent;
-            color: #A9A9A9;
-        }
-
-        .submit {
-            background-color: #0FBB00;
-            color: #fff;
+          &:last-child {
+            margin-right: 0;
+          }
         }
     }
-  }
 
 `;
 
 export const Box = styled.div`
-    border: 1px solid #949494;
+    border: 1px solid var(--gray-4);
     padding: 1.5rem;
     margin: 1.5rem 0;
 
