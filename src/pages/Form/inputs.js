@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form, Modal } from 'react-bootstrap'
-import { Radio, RadioGroup, Checkbox, FormControl, InputAdornment, IconButton } from '@material-ui/core'
+import { Checkbox, InputAdornment, IconButton } from '@material-ui/core'
 import { phoneMask, cpfMask } from '../../components/Mask'
 import Button from 'components/Button'
-import { useSelector, useDispatch } from 'react-redux'
 import { remove } from 'pages/Layout/actions'
 import AddCircle from '../../assets/img/addCircle.svg'
 
-import { FieldSet, Input, RadioInput, Label, TextStep3, TagLabel, InputButtom, CloseTag, Span, ModalFinally, LinkNavegate, ButtonNavigate } from './style'
+import { 
+  FieldSet, 
+  Input, 
+  RadioInput, 
+  Label, 
+  TagLabel, 
+  InputButtom, 
+  CloseTag, 
+  Span, 
+  ModalFinally, 
+  LinkNavegate, 
+  ButtonNavigate } from './style'
 
 
 export const Fields = {
@@ -146,7 +156,8 @@ export const Fields = {
       <Form.Group>
         <FieldSet>
           <Form.Label className="">Já é filiado a alguma Associação do Ecad?</Form.Label>
-          <select>
+          <select onChange={e => dispatch({type: 'ADD_FORM', payload: {...value, [name]: e.target.value}})}>
+            <option value="">{placeholder}</option>
             {['ABRAMUS', 'UBC', 'SOCIMPRO', 'SICAM', 'AMAR', 'ASSIM', 'SBACEM', 'Não tenho certeza', 'Ainda não sou filiado']
             .map((ass) => (
               <option value={ass} key={ass}>{ass}</option>
@@ -271,11 +282,15 @@ export const Fields = {
 
     return (
       <RadioInput 
-        control={ <Checkbox 
+        control={ 
+          <Checkbox 
+            required
             checked={data.termos} 
             color="default" 
             onChange={ e => dispatch({type: 'TERMOS', payload: {...data, termos: !data.termos}})} 
-            name="termos"/>} 
+            name="termos"
+          />
+        } 
         label={'Autorizo a consulta e estou ciente das condições para realização da busca de Créditos Retidos e confirmo que li e concordo com os Termos de Uso e Política de Privacidade.'} />
     )
   }
@@ -293,7 +308,7 @@ export function Step3 ({show, setShowSucess}) {
         <p>Você acaba de solicitar a consulta de Créditos Retidos junto ao ECAD. 
           Estamos processando sua solicitação.</p>
         <p><b>Em até 2 (dois) dias úteis você receberá um e-mail indicando se existem créditos retidos para receber.</b></p>
-        <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos <a href="https://www.lamusic.com.br/termos-de-uso" target="_blank">Termos de Uso</a> e <a href="https://www.lamusic.com.br/politica-de-privacidade" target="_blank">Políticas de Privacidade</a></p>
+        <p>Estou ciente das condições para realização da busca e confirmo que li e concordo com as disposições dos <a href="https://www.lamusic.com.br/termos-de-uso" without rel="noopener noreferrer" target="_blank">Termos de Uso</a> e <a href="https://www.lamusic.com.br/politica-de-privacidade" without rel="noopener noreferrer" target="_blank">Políticas de Privacidade</a></p>
         
         <div className="row d-flex justify-content-center flex-column px-5">
           <ButtonNavigate href="https://consulta.lamusic.com.br/" className="mt-3">Fazer nova pesquisa</ButtonNavigate>

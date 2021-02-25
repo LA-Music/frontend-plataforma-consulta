@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { Container, Box } from './styles'
 
-const Index = ({step, setStep, setModalConfirm, submit}) => {
+const Index = ({step, setStep, submit}) => {
 
   const state = useSelector(state => state);
 
@@ -44,7 +44,7 @@ const Index = ({step, setStep, setModalConfirm, submit}) => {
               }
               <div>
                   <h5>Nome Artistico, Banda ou Coletivo:</h5>
-                  <p>{`${state.data.nome_artistico.join(', ')}`}, {state.state_form.nome_artistico}</p>
+                  <p>{state.data.nome_artistico.join(', ')}</p>
               </div>
               <div>
                   <h5>É vinculado a alguma associação do ECAD(Abramus, UBC, etc)?</h5>
@@ -52,7 +52,7 @@ const Index = ({step, setStep, setModalConfirm, submit}) => {
               </div>
               <div>
                   <h5>Lista de Músicas</h5>
-                  <p>{state.data.lista_musicas.join(', ')}, { state.state_form.lista_musicas}</p>
+                  <p>{state.data.lista_musicas.join(', ')}</p>
               </div>
           </Box>
         </div>

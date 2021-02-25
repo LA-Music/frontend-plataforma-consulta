@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import '../../App.css';
 
-import { ArrowRightAlt } from '@material-ui/icons'
 import { Modal } from 'react-bootstrap';
 
 // import Button, { Link } from 'components/Button'
@@ -16,17 +15,16 @@ import Who from '../Who'
 
 import Load from 'components/Load'
 
-import { check, attrFields, remove } from './actions';
+import { check, attrFields } from './actions';
 
 
-import { Container, Body, Steps, ListFields, TitleForm } from './styles'
+import { Container, Steps, ListFields, TitleForm } from './styles'
 
 function Index() {
   const dispatch = useDispatch()
   const store = useSelector(state => state)
   
   const [ step, setStep ] = useState(0)
-  const [ qtdSteps, setQtdSteps ] = useState(0)
 
   const [ loading, setLoading ] = useState(false)
 
@@ -235,8 +233,7 @@ function Index() {
     }
   ]
 
-  function backStep(value) {
-    console.log(value)
+  function backStep() {
     setModalConfirm(false)
     setStep(step-1)
   }
@@ -247,10 +244,9 @@ function Index() {
         await dispatch({type: 'SET_PATHNAME', payload: window.location.pathname })
       }
 
-      if (store.data.who !== '') {
-        let lengthSteps = papel.find(type => type.typePerson === store.data.who).steps.length
-        setQtdSteps(lengthSteps)
-      }
+      // if (store.data.who !== '') {
+      //   let lengthSteps = papel.find(type => type.typePerson === store.data.who).steps.length
+      // }
 
   },[store.data.who]) //eslint-disable-line
 
@@ -272,30 +268,28 @@ function Index() {
     setStep(nextStep)
     setLoading(false)
 
-      // setShowSucess(true)
-      if (confirmedData) {
-        console.log('sucesso')
-        
-        // try {
-        //   axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-        //     ...payload
-        //   })
-        //   .then( res => {
-        //       res.data.msg === 'ok' && setStep(step + 1);
-        //       setLoading(false);
-        //     }
-        //   )
-        //   .catch(function(err){
-        //     if(err.response.status === 500 || err.response.status === 400 ){
-        //       setResp(`${err.response.data.message} `)
-        //       setShow(true)
-        //       setLoading(false);
-        //     }
-        //   })
-        // } catch(error) {
-        //   console.error(error.response)
-        //     setLoading(false);
-        // }
+    if (confirmedData) {
+  
+        try {
+          axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
+            ...payload
+          })
+          .then( res => {
+              res.data.msg === 'ok' && setShowSucess(true);
+              setLoading(false);
+            }
+          )
+          .catch(function(err){
+            if(err.response.status === 500 || err.response.status === 400 ){
+              setResp(`${err.response.data.message} `)
+              setShow(true)
+              setLoading(false);
+            }
+          })
+        } catch(error) {
+          console.error(error.response)
+          setLoading(false);
+        }
 
       } 
   }

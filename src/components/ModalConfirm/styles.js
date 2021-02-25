@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { Modal } from  'reactstrap'
-
 
 export const Container = styled.div`
 
@@ -18,24 +16,21 @@ export const Container = styled.div`
   
   .content {
     background-color: #fff !important;
-  
-
   }
-    .footer {
+    
+  .footer {
+      display: flex;
+      justify-content: center;
 
-        display: flex;
-        justify-content: center;
+      button {
+        margin-right: 8px;
+        width: 50% !important;
 
-        button {
-          margin-right: 8px;
-          width: 50% !important;
-
-          &:last-child {
-            margin-right: 0;
-          }
+        &:last-child {
+          margin-right: 0;
         }
-    }
-
+      }
+  }
 `;
 
 export const Box = styled.div`

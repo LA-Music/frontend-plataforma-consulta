@@ -36,21 +36,21 @@ export const remove = {
 export const attrFields = {
   nomeCompleto: {
     id: 'nomeCompleto',
-    required: false,
+    required: true,
     name: 'nome',
     placeholder: 'Fernando Santos da Cruz', 
   },
 
   email: {
     id: 'email', 
-    required: false,
+    required: true,
     name: 'email', 
     placeholder: 'exemplo@gmail.com', 
   },
   
   telefone: {
     id: 'telefone', 
-    required: false,
+    required: true,
     name: 'telefone', 
     placeholder: '(00) 0 0000-0000', 
   },
@@ -64,7 +64,7 @@ export const attrFields = {
   associacao: {
     id: 'associacao', 
     name: 'associacao',  
-    placeholder: ''
+    placeholder: 'Selecione uma associação'
   },
 
   cpf: {
@@ -81,7 +81,7 @@ export const attrFields = {
 
   nome: {
     id: 'nome',
-    required: false, 
+    required: true, 
     name: 'nome', 
     placeholder: 'Nome do artista', 
   }
