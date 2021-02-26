@@ -5,7 +5,6 @@ import '../../App.css';
 
 import { Modal } from 'react-bootstrap';
 
-// import Button, { Link } from 'components/Button'
 import ModalDados from 'components/ModalConfirm'
 import ModalContact from 'components/ModalContact'
 
@@ -30,7 +29,6 @@ function Index() {
 
   const [ showSucess, setShowSucess ] = useState(false)
   const [ show, setShow ] = useState()
-  const [ confirmedData, setConfirmerdData ] = useState(false)
   
   const [ linkContact, setLinkContact ]  = useState(false)
   const [ resp, setResp ] = useState('')
@@ -244,21 +242,10 @@ function Index() {
         await dispatch({type: 'SET_PATHNAME', payload: window.location.pathname })
       }
 
-      // if (store.data.who !== '') {
-      //   let lengthSteps = papel.find(type => type.typePerson === store.data.who).steps.length
-      // }
-
   },[store.data.who]) //eslint-disable-line
 
   async function submit(e){
     e.preventDefault();
-    const { data, state_form } = store
-    
-    let payload = data
-
-    payload.nome_artistico = check.check(payload.nome_artistico, state_form.nome_artistico) 
-    payload.redes_sociais = check.check(payload.redes_sociais, state_form.redes_sociais) 
-    payload.lista_musicas = check.check(payload.lista_musicas, state_form.lista_musicas) 
 
     let nextStep = step + 1
     
@@ -268,30 +255,40 @@ function Index() {
     setStep(nextStep)
     setLoading(false)
 
-    if (confirmedData) {
-  
-        try {
-          axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-            ...payload
-          })
-          .then( res => {
-              res.data.msg === 'ok' && setShowSucess(true);
-              setLoading(false);
-            }
-          )
-          .catch(function(err){
-            if(err.response.status === 500 || err.response.status === 400 ){
-              setResp(`${err.response.data.message} `)
-              setShow(true)
-              setLoading(false);
-            }
-          })
-        } catch(error) {
-          console.error(error.response)
+  }
+
+
+  async function confirmData(e) {
+
+    const { data, state_form } = store
+    
+    let payload = data
+
+    payload.nome_artistico = check.check(payload.nome_artistico, state_form.nome_artistico) 
+    payload.redes_sociais = check.check(payload.redes_sociais, state_form.redes_sociais) 
+    payload.lista_musicas = check.check(payload.lista_musicas, state_form.lista_musicas) 
+
+    setLoading(true)
+    try {
+      axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
+        ...payload
+      })
+      .then( res => {
+          res.data.message === 'OK' && setShowSucess(true);
           setLoading(false);
         }
-
-      } 
+      )
+      .catch(function(err){
+        if(err.response.status === 500 || err.response.status === 400 ){
+          setResp(`${err.response.data.message} `)
+          setShow(true)
+          setLoading(false);
+        }
+      })
+    } catch(error) {
+      console.error(error.response)
+      setLoading(false);
+    }
   }
 
   return (
@@ -332,8 +329,7 @@ function Index() {
                 setStep={backStep}
                 modalConfirm={modalConfirm} 
                 submit={(e) => {
-                  setConfirmerdData(true)
-                  submit(e)
+                  confirmData(e)
                 } } 
               />
             }
@@ -344,7 +340,7 @@ function Index() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
-          {resp}
+          {resp !== undefined ? resp : 'Ocorreu um erro.'}
           <div>
             <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}>
               <b>Entrar em contato</b>
