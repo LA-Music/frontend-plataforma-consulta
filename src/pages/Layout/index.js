@@ -307,7 +307,6 @@ function Index() {
         lead_id: leadId
       })
       .then( res => {
-        console.log(res.data)
           res.data.message.toLowerCase() === 'ok' && setShowSucess(true);
           setLoading(false);
         }
@@ -354,8 +353,6 @@ function Index() {
                   </>
                 ) 
               }
-
-              {console.log(showSucess)}
 
             <Step3 show={showSucess} setShowSucess={() => setShowSucess(!showSucess)}/> 
             
