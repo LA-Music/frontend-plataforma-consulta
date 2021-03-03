@@ -11,7 +11,7 @@ import WhatsApp from '../../assets/img/whatsapp.svg'
 function index(props) {
   return (
     <>
-    <Footer className="d-none d-sm-flex flex-row justify-content-center align-items-center ">
+    <Footer className="d-none d-md-flex flex-row justify-content-center align-items-center ">
       <div className="d-flex flex-column mr-5">
         <img src={Logo} style={{width:'10rem'}} className="img-fluid" alt="Logo"/>
         <p className="mb-0">Todos os direitos reservados</p>
@@ -31,7 +31,8 @@ function index(props) {
         </Link>
       </div>
     </Footer>
-    <Footer className="d-flex d-sm-none flex-row justify-content-center align-items-center row w-100 mx-auto">
+
+    <Footer className="d-flex d-md-none flex-row justify-content-center align-items-center row w-100 mx-auto">
       <div className="d-flex justify-content-center align-items-center flex-column mr-5 col-12 mx-auto mt-5">
         <img src={Logo} style={{width:'10rem'}} className="img-fluid" alt="Logo"/>
         <p className="mb-0">Todos os direitos reservados</p>
