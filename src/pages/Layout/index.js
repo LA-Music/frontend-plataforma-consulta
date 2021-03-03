@@ -307,7 +307,7 @@ function Index() {
         lead_id: leadId
       })
       .then( res => {
-          res.data.message === 'OK' && setShowSucess(true);
+          res.data.message.toLowerCase() === 'ok' && setShowSucess(true);
           setLoading(false);
         }
       )
