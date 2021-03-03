@@ -233,9 +233,9 @@ function Index() {
     }
   ]
 
-  function backStep() {
+  function backStep(value) {
     setModalConfirm(false)
-    setStep(step-1)
+    setStep(value ?? step-1)
   }
 
   useEffect(() => {
@@ -332,9 +332,9 @@ function Index() {
         :(
           <>
             <Steps className="order-1 order-lg-2" active={store.form}>
-              <span onClick={() => step > 0 && setStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
-              <span onClick={() => step > 1 && setStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
-              <span onClick={() => step >= 2 && setStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
+              <span onClick={() => step > 0 && backStep(0)} className={`num-Steps ${step === 0 ? 'active' : ''}`}>1</span>
+              <span onClick={() => step > 1 && backStep(1)} className={`num-Steps ${step === 1 ? 'active' : ''}`}>2</span>
+              <span onClick={() => step >= 2 && backStep(2)} className={`num-Steps ${step === 2 ? 'active' : ''}`}>3</span>
             </Steps>
       
             <ListFields onSubmit={submit}>
