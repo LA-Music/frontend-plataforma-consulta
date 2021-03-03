@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios'
+import { api } from 'services/api';
 import '../../App.css';
 
 import { Modal } from 'react-bootstrap';
@@ -35,6 +35,8 @@ function Index() {
   const [ modalConfirm, setModalConfirm ] = useState(false)
   
   const [ pathname ] = useState(window.location.pathname)
+
+  const [ leadId, setLeadId ] = useState(false);
 
   
   const handleClose = () => {
@@ -247,13 +249,43 @@ function Index() {
   async function submit(e){
     e.preventDefault();
 
+    const { data } = store
+    
     let nextStep = step + 1
     
     setLoading(true)
     setModalConfirm(nextStep > 2)
 
-    setStep(nextStep)
-    setLoading(false)
+    if (!leadId) {
+      try {
+        api.post('/lead', {
+          ...data
+        })
+        .then(res => {
+            setLeadId(res.data.lead_id)
+            
+            setStep(nextStep)
+            setLoading(false)
+          })
+        .catch(error => {
+          if(error.response.status === 500 || error.response.status === 400 ){
+            setResp(`${error.response.data.message} `)
+            setShow(true)
+            setLoading(false);
+          }
+        })
+      } catch (error) {
+        if(error.response.status === 500 || error.response.status === 400 ){
+          setResp(`${error.response.data.message} `)
+          setShow(true)
+          setLoading(false);
+        }
+      }
+    } else {
+      setStep(nextStep)
+      setLoading(false)
+    }
+      
 
   }
 
@@ -270,8 +302,9 @@ function Index() {
 
     setLoading(true)
     try {
-      axios.post('https://lamusic-platform-backend.herokuapp.com/credito-retido',{
-        ...payload
+      api.post('/credito-retido',{
+        ...payload,
+        lead_id: leadId
       })
       .then( res => {
           res.data.message === 'OK' && setShowSucess(true);
@@ -340,7 +373,7 @@ function Index() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
-          {resp !== undefined ? resp : 'Ocorreu um erro.'}
+          {resp ? 'Ocorreu um erro.' : resp }
           <div>
             <span style={{cursor: 'pointer', textDecoration: 'underline'}} onClick={showContact}>
               <b>Entrar em contato</b>
