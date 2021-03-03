@@ -43,6 +43,13 @@ export const Steps = styled.div`
     display: ${props => props.active ? 'flex' : 'none' };
     justify-content: space-between;
 
+    /* Mobile */
+    @media(max-width: 1000px) {
+      width: 287px;
+      max-width: 100%;
+    }
+
+    /* Desktop */
     @media(min-width: 1000px) {
         flex-direction: column;
         justify-content: center;
@@ -57,8 +64,12 @@ export const ListFields = styled.form`
   width: 587px;
   max-width: 100%;
   margin: auto 20px;
+  
+  padding: 1.5rem;
 
-  padding: 50px;
+  @media(min-width: 500px) {
+    padding: 50px;
+  }
 `;
 
 export const TitleForm = styled.h2`
