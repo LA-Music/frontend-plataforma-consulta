@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Logo from 'assets/img/logo.svg'
-import Hamburguer from 'assets/img/hamburguer.svg'
-import CloseMenu from 'assets/img/closeMenu.svg'
-
 import { Header, NavBar, MenuMobile } from './style';
 
 function Index(props) {
-
-  const [ toggle, setToggle ] = useState(false);
 
   const listMenu = [
     { label: 'Inicial'   , url: 'https://www.lamusic.com.br' },
@@ -45,27 +40,40 @@ function Index(props) {
             </li>
           )}
         </ul>
-
-        { !toggle && <img src={Hamburguer} onClick={() => setToggle(!toggle)} className="menu" alt="menu"/> }
-        { toggle && <img src={CloseMenu} onClick={() => setToggle(!toggle)} className="menu" alt="menu"/> }
       </NavBar>
 
-      <MenuMobile toggle={toggle}>
-        {listMenu.map( list => 
-          <li style={{position: 'relative'}}>
-            <a href={list.url}>{list.label}</a>
+      <MenuMobile className="menu-mobile">
+        <a href="https://lamusic.com.br">
+          <img src={Logo} className="logo" alt="LA Music" />
+        </a>
 
-            {list.submenu && (
-              <ul className="flex-column m-0 p-0">
-                {list.submenu.map( ls => 
-                  <li className="m-0 p-0">
-                    <a href={ls.url}>{ls.label}</a>
-                  </li>
-                )}
-              </ul>
-            )}
-          </li>
-        )}
+        <input type="checkbox" id="hamburguer" style={{display: 'none'}}/>
+
+        <label for="hamburguer">
+          <div className="hamburguer"></div>
+        </label>
+        
+        <div className="collapse">
+          <div className="menu-menu-topo-container">
+            <ul id="top-nav">
+              {listMenu.map( list => 
+                <li style={{position: 'relative'}}>
+                  <a href={list.url}>{list.label}</a>
+
+                  {list.submenu && (
+                    <ul className="flex-column m-0 p-0">
+                      {list.submenu.map( ls => 
+                        <li className="m-0 p-0">
+                          <a href={ls.url}>{ls.label}</a>
+                        </li>
+                      )}
+                    </ul>
+                  )}
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
       </MenuMobile>
 
       <Header className='pb-5'>

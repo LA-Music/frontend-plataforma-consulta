@@ -15,4 +15,12 @@ export const Footer = styled.footer`
   @media(min-width: 600px) {
     padding: 3rem 0;
   }
+
+  p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.6px;
+
+    font-family: 'AvenirRegular';
+  }
 `;
