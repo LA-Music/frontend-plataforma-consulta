@@ -22,7 +22,9 @@ function Index(props) {
   return (
     <>
       <NavBar >
-        <img src={Logo} className="logo" alt="LA Music" />
+        <a href="https://lamusic.com.br">
+          <img src={Logo} className="logo" alt="LA Music" />
+        </a>
         <ul>
           {listMenu.map( list => 
             <li style={{position: 'relative'}}>
